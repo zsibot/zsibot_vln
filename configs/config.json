@@ -1,0 +1,72 @@
+{
+    "robot": {
+        "robot_type": "xgb",
+        "weapon": "",
+        "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+        },
+        "rotation": {
+            "roll": 0.0,
+            "pitch": 0.0,
+            "yaw": 0.0
+        },
+        "synchronous_mode": false,
+        "sensors": {
+            "camera": {
+                "position": {
+                    "x": 17.0,
+                    "y": 0.0,
+                    "z": 1.0
+                },
+                "rotation": {
+                    "roll": 0.0,
+                    "pitch": 0.0,
+                    "yaw": 0.0
+                },
+                "height": 1080,
+                "width": 1920,
+                "sensor_type": "rgb",
+                "topic": "/image_raw/compressed",
+                "fov": 90.0,
+                "frequency": 10.0
+            },
+            "depth_sensor": {
+                "position": {
+                    "x": 17.0,
+                    "y": 0.0,
+                    "z": 1.0
+                },
+                "rotation": {
+                    "roll": 0.0,
+                    "pitch": 0.0,
+                    "yaw": 0.0
+                },
+                "height": 1080,
+                "width": 1920,
+                "sensor_type": "depth2",
+                "topic": "/image_raw/compressed/depth",
+                "fov": 90.0,
+                "frequency": 10.0
+            },
+            "lidar": {
+                "position": {
+                    "x": 13.011,
+                    "y": 2.329,
+                    "z": 17.598
+                },
+                "rotation": {
+                    "roll": 0.0,
+                    "pitch": 0.0,
+                    "yaw": 0.0
+                },
+                "sensor_type": "mid360",
+                "topic": "/livox/lidar",
+                "draw_points": false,
+                "random_scan": false,
+                "frequency": 10.0
+            }
+        }
+    }
+}

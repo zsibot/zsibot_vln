@@ -1,0 +1,16 @@
+third_party/
+agents/zeroshot/unigoal
+bridge/build/
+bridge/install/
+bridge/log/
+outputs/
+
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.dist/
+.DS_Store
+

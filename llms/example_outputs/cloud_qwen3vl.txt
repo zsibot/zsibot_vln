@@ -1,0 +1,4896 @@
+final text_encoder_type: bert-base-uncased
+_IncompatibleKeys(missing_keys=[], unexpected_keys=['label_enc.weight', 'bert.embeddings.position_ids'])
+[12/02 17:51:48 detectron2]: Arguments: Namespace(confidence_threshold=0.5, config_file='configs/mask_rcnn_R_50_FPN_3x.yaml', input=['input1.jpeg'], opts=['MODEL.WEIGHTS', 'detectron2://COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x/137849600/model_final_f10217.pkl', 'MODEL.DEVICE', 'cuda:0'], output=None, video_input=None, webcam=False)
+[12/02 17:51:48 d2.checkpoint.detection_checkpoint]: [DetectionCheckpointer] Loading from detectron2://COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x/137849600/model_final_f10217.pkl ...
+
+--------prompt_image2text:
+ Describe the object at the center of the image and indicate the spatial relationship between other objects and it.
+----LLM response:
+ The object at the center of the image is a bed with a black frame and headboard. It is positioned horizontally across the middle of the room, slightly angled toward the viewer.
+
+Spatial relationships:
+
+- The bed is flanked on its right side by a black nightstand, which holds a white lamp with a classic lampshade and a small stack of books beneath it.
+- On the left side of the bed (from the viewer’s perspective), there are dark blue curtains hanging beside a window, partially visible in the background.
+- Above the bed, a framed piece of artwork hangs on the wall.
+- The entire scene rests on a textured, light beige carpet that covers the floor and extends to the foreground.
+
+In summary: The bed is centrally located, with the nightstand and lamp to its right, blue curtains to its left, and artwork above it — creating a balanced bedroom composition.
+-------------------------------------------------------------------------------------------
+
+--------object prompt: 
+ 
+        Please extract all objects mentioned in the following text description and the output format is "[<object 1>, <object 2>,...]":
+        Text Description: The object at the center of the image is a bed with a black frame and headboard. It is positioned horizontally across the middle of the room, slightly angled toward the viewer.
+
+Spatial relationships:
+
+- The bed is flanked on its right side by a black nightstand, which holds a white lamp with a classic lampshade and a small stack of books beneath it.
+- On the left side of the bed (from the viewer’s perspective), there are dark blue curtains hanging beside a window, partially visible in the background.
+- Above the bed, a framed piece of artwork hangs on the wall.
+- The entire scene rests on a textured, light beige carpet that covers the floor and extends to the foreground.
+
+In summary: The bed is centrally located, with the nightstand and lamp to its right, blue curtains to its left, and artwork above it — creating a balanced bedroom composition.
+        
+----LLM response: 
+ [bed, black frame, headboard, black nightstand, white lamp, classic lampshade, small stack of books, dark blue curtains, window, framed artwork, textured light beige carpet]
+-------------------------------------------------------------------------------------------
+
+--------relation prompt: 
+ 
+        Please describe the relationships between the above objects in the following text description and provide the information in the specified format.
+        The format should be: "<Object A> and <Object B>: <Object A> is <relation type> <Object B>".
+        If there are multiple relationships, please list them one per line.
+
+        Text Description: The object at the center of the image is a bed with a black frame and headboard. It is positioned horizontally across the middle of the room, slightly angled toward the viewer.
+
+Spatial relationships:
+
+- The bed is flanked on its right side by a black nightstand, which holds a white lamp with a classic lampshade and a small stack of books beneath it.
+- On the left side of the bed (from the viewer’s perspective), there are dark blue curtains hanging beside a window, partially visible in the background.
+- Above the bed, a framed piece of artwork hangs on the wall.
+- The entire scene rests on a textured, light beige carpet that covers the floor and extends to the foreground.
+
+In summary: The bed is centrally located, with the nightstand and lamp to its right, blue curtains to its left, and artwork above it — creating a balanced bedroom composition.
+
+        Example output format:
+        Book and Table: Book is on Table
+        
+----LLM response: 
+ Bed and Nightstand: Bed is next to Nightstand  
+Bed and Curtains: Bed is next to Curtains  
+Bed and Artwork: Bed is below Artwork  
+Bed and Carpet: Bed is on Carpet  
+Nightstand and Lamp: Lamp is on Nightstand  
+Nightstand and Books: Books are under Nightstand  
+Curtains and Window: Curtains are beside Window  
+Artwork and Wall: Artwork is on Wall  
+Carpet and Floor: Carpet is on Floor
+-------------------------------------------------------------------------------------------
+
+update_observation 0...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+explore_subgraph
+update_observation 2...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+update_observation 4...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+explore_subgraph
+update_observation 6...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+update_observation 8...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+update_observation 10...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+explore_subgraph
+update_observation 12...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+update_observation 14...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+update_observation 16...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+update_observation 18...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+explore_subgraph
+update_observation 20...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+update_observation 22...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+Edges:
+===============
+update_observation 24...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ on
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+Edges:
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 26...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+Edges:
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 28...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+Edges:
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 30...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+Edges:
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 32...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+Edges:
+  - cabinet_0 --[on]--> mirror_0
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ bedroom
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 34...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+Edges:
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 36...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+Edges:
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 38...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+Edges:
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 40...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+Edges:
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 42...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+Edges:
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 44...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+Edges:
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 46...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+Edges:
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 48...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+Edges:
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 50...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+Edges:
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 52...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+Edges:
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 54...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+Edges:
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 56...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+Edges:
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 58...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+Edges:
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 60...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ on
+next to
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+update_observation 62...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ next to
+next to
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+update_observation 64...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+update_observation 66...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+update_observation 68...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+update_observation 70...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ bedroom
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 72...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+update_observation 74...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+update_observation 76...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+update_observation 78...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+update_observation 80...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+update_observation 82...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+update_observation 84...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ bedroom
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 86...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+update_observation 88...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+update_observation 90...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ bedroom
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 92...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+update_observation 94...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+update_observation 96...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+update_observation 98...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ bedroom
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 100...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+update_observation 102...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+update_observation 104...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+update_observation 106...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+update_observation 108...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+update_observation 110...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+update_observation 112...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ bedroom
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 114...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+update_observation 116...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+===============
+update_observation 118...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ next to  
+on  
+on  
+next to
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 120...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 122...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 124...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 126...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 128...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 130...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ next to
+next to
+next to
+next to
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 132...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 134...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ bedroom
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 136...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 138...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 140...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ bedroom
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 142...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 144...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 146...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+Edges:
+  - mirror_1 --[on]--> mirror_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+===============
+update_observation 148...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ next to
+on
+next to
+next to
+on
+on
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[401, 489]
+Edges:
+  - table_0 --[on]--> bed_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_0 --[next to]--> sofa_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 150...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+Edges:
+  - table_0 --[on]--> bed_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_0 --[next to]--> sofa_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 152...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+Edges:
+  - table_0 --[on]--> bed_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_0 --[next to]--> sofa_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 154...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+Edges:
+  - table_0 --[on]--> bed_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_0 --[next to]--> sofa_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 156...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+Edges:
+  - table_0 --[on]--> bed_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_0 --[next to]--> sofa_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 158...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+Edges:
+  - table_0 --[on]--> bed_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_0 --[next to]--> sofa_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ bedroom
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 160...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+Edges:
+  - table_0 --[on]--> bed_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_0 --[next to]--> sofa_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 162...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+Edges:
+  - table_0 --[on]--> bed_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_0 --[next to]--> sofa_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 164...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+Edges:
+  - table_0 --[on]--> bed_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_0 --[next to]--> sofa_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 166...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+Edges:
+  - table_0 --[on]--> bed_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_0 --[next to]--> sofa_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 168...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+Edges:
+  - table_0 --[on]--> bed_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_0 --[next to]--> sofa_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 170...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+Edges:
+  - table_0 --[on]--> bed_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_0 --[next to]--> sofa_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 172...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+Edges:
+  - table_0 --[on]--> bed_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_0 --[next to]--> sofa_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 174...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+Edges:
+  - table_0 --[on]--> bed_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_0 --[next to]--> sofa_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 176...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+Edges:
+  - table_0 --[on]--> bed_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_0 --[next to]--> sofa_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 178...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+Edges:
+  - table_0 --[on]--> bed_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_0 --[next to]--> sofa_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 180...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+Edges:
+  - table_0 --[on]--> bed_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_0 --[next to]--> sofa_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 182...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+Edges:
+  - table_0 --[on]--> bed_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_0 --[next to]--> sofa_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ bedroom
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 184...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ next to  
+on  
+beside  
+next to  
+on  
+on  
+next to
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 186...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 188...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 190...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 192...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 194...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 196...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 198...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 200...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 202...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 204...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ bedroom
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+global goal popped
+update_observation 206...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 208...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 210...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 212...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 214...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 216...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 218...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 220...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 222...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 224...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 226...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 228...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 230...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 232...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 234...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ bedroom
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 236...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 238...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 240...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 242...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+Edges:
+  - table_1 --[next to  ]--> bed_0
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 244...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ next to  
+on  
+on  
+on  
+on  
+next to  
+next to  
+same as
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+Edges:
+  - bed_1 --[next to  ]--> curtain_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_1 --[on  ]--> table_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - table_1 --[beside  ]--> curtain_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_1 --[next to  ]--> sofa_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - table_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_0 --[next to  ]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> mirror_0
+  - cabinet_0 --[on]--> mirror_0
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_1
+  - table_0 --[on]--> mirror_0
+===============
+update_observation 246...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ on
+on
+next to
+next to
+on
+next to
+next to
+on
+next to
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+  - bed_2 | bed_2 | pos=[458, 480]
+Edges:
+  - table_1 --[beside  ]--> curtain_0
+  - table_1 --[next to  ]--> sofa_0
+  - bed_2 --[next to]--> table_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - bed_2 --[next to]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - bed_2 --[on]--> bed_1
+  - bed_2 --[next to]--> table_1
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_2 --[on]--> bed_0
+  - table_1 --[on  ]--> mirror_0
+  - bed_2 --[next to]--> curtain_0
+  - bed_2 --[on]--> mirror_1
+  - cabinet_0 --[on]--> mirror_0
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_0
+  - bed_1 --[next to  ]--> curtain_0
+  - bed_2 --[on]--> mirror_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_1 --[on  ]--> table_0
+  - bed_2 --[next to]--> cabinet_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_0 --[on]--> mirror_1
+===============
+update_observation 248...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+  - bed_2 | bed_2 | pos=[458, 480]
+Edges:
+  - table_1 --[beside  ]--> curtain_0
+  - table_1 --[next to  ]--> sofa_0
+  - bed_2 --[next to]--> table_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - bed_2 --[next to]--> sofa_0
+  - table_1 --[on  ]--> mirror_1
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - bed_2 --[on]--> bed_1
+  - bed_2 --[next to]--> table_1
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_2 --[on]--> bed_0
+  - table_1 --[on  ]--> mirror_0
+  - bed_2 --[next to]--> curtain_0
+  - bed_2 --[on]--> mirror_1
+  - cabinet_0 --[on]--> mirror_0
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_0
+  - bed_1 --[next to  ]--> curtain_0
+  - bed_2 --[on]--> mirror_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_1 --[on  ]--> table_0
+  - bed_2 --[next to]--> cabinet_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - table_1 --[on  ]--> table_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - table_0 --[on]--> mirror_1
+===============
+update_observation 250...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ next to
+next to
+on
+on
+on
+next to
+on
+on
+on
+on
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+  - bed_2 | bed_2 | pos=[458, 480]
+  - bed_3 | bed_3 | pos=[450, 482]
+Edges:
+  - table_1 --[beside  ]--> curtain_0
+  - table_1 --[next to  ]--> sofa_0
+  - bed_2 --[next to]--> table_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - bed_3 --[next to]--> curtain_0
+  - bed_3 --[on]--> bed_2
+  - bed_2 --[next to]--> sofa_0
+  - bed_3 --[on]--> mirror_1
+  - table_1 --[on  ]--> mirror_1
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - bed_2 --[on]--> bed_1
+  - bed_2 --[next to]--> table_1
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_2 --[on]--> bed_0
+  - bed_3 --[on]--> table_0
+  - bed_3 --[on]--> table_1
+  - table_1 --[on  ]--> mirror_0
+  - bed_3 --[on]--> bed_0
+  - bed_2 --[next to]--> curtain_0
+  - bed_2 --[on]--> mirror_1
+  - cabinet_0 --[on]--> mirror_0
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_0
+  - bed_1 --[next to  ]--> curtain_0
+  - bed_2 --[on]--> mirror_0
+  - bed_3 --[next to]--> cabinet_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_2 --[next to]--> cabinet_0
+  - bed_1 --[on  ]--> table_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - bed_0 --[on  ]--> mirror_0
+  - table_0 --[next to]--> sofa_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - table_0 --[next to]--> curtain_0
+  - bed_3 --[on]--> mirror_0
+  - bed_3 --[next to]--> sofa_0
+  - table_1 --[on  ]--> table_0
+  - mirror_1 --[next to]--> cabinet_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_0 --[next to]--> cabinet_0
+  - bed_3 --[on]--> bed_1
+  - table_0 --[on]--> mirror_1
+===============
+update_observation 252...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ on
+on
+next to
+on
+next to
+next to
+next to
+next to
+on
+on
+next to
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+  - bed_2 | bed_2 | pos=[458, 480]
+  - bed_3 | bed_3 | pos=[450, 482]
+  - cabinet_1 | cabinet_1 | pos=[445, 490]
+Edges:
+  - table_1 --[beside  ]--> curtain_0
+  - table_1 --[next to  ]--> sofa_0
+  - bed_2 --[next to]--> table_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - bed_3 --[next to]--> curtain_0
+  - bed_3 --[on]--> bed_2
+  - bed_2 --[next to]--> sofa_0
+  - bed_3 --[on]--> mirror_1
+  - table_1 --[on  ]--> mirror_1
+  - cabinet_1 --[next to]--> bed_2
+  - cabinet_1 --[next to]--> bed_3
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - bed_2 --[on]--> bed_1
+  - bed_2 --[next to]--> table_1
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_2 --[on]--> bed_0
+  - bed_3 --[on]--> table_0
+  - cabinet_1 --[on]--> table_1
+  - bed_3 --[on]--> table_1
+  - table_1 --[on  ]--> mirror_0
+  - bed_3 --[on]--> bed_0
+  - bed_2 --[next to]--> curtain_0
+  - bed_2 --[on]--> mirror_1
+  - cabinet_0 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> curtain_0
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_0
+  - cabinet_1 --[on]--> mirror_1
+  - bed_1 --[next to  ]--> curtain_0
+  - cabinet_1 --[on]--> table_0
+  - bed_2 --[on]--> mirror_0
+  - bed_3 --[next to]--> cabinet_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_2 --[next to]--> cabinet_0
+  - bed_1 --[on  ]--> table_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - cabinet_1 --[next to]--> bed_1
+  - bed_0 --[on  ]--> mirror_0
+  - cabinet_1 --[on]--> cabinet_0
+  - table_0 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> sofa_0
+  - table_0 --[next to]--> curtain_0
+  - bed_3 --[on]--> mirror_0
+  - bed_3 --[next to]--> sofa_0
+  - table_1 --[on  ]--> table_0
+  - mirror_1 --[next to]--> cabinet_0
+  - cabinet_1 --[on]--> mirror_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_3 --[on]--> bed_1
+  - table_0 --[on]--> mirror_1
+===============
+update_observation 254...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+  - bed_2 | bed_2 | pos=[458, 480]
+  - bed_3 | bed_3 | pos=[450, 482]
+  - cabinet_1 | cabinet_1 | pos=[445, 490]
+Edges:
+  - table_1 --[beside  ]--> curtain_0
+  - table_1 --[next to  ]--> sofa_0
+  - bed_2 --[next to]--> table_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - bed_3 --[next to]--> curtain_0
+  - bed_3 --[on]--> bed_2
+  - bed_2 --[next to]--> sofa_0
+  - bed_3 --[on]--> mirror_1
+  - table_1 --[on  ]--> mirror_1
+  - cabinet_1 --[next to]--> bed_2
+  - cabinet_1 --[next to]--> bed_3
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - bed_2 --[on]--> bed_1
+  - bed_2 --[next to]--> table_1
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_2 --[on]--> bed_0
+  - bed_3 --[on]--> table_0
+  - cabinet_1 --[on]--> table_1
+  - bed_3 --[on]--> table_1
+  - table_1 --[on  ]--> mirror_0
+  - bed_3 --[on]--> bed_0
+  - bed_2 --[next to]--> curtain_0
+  - bed_2 --[on]--> mirror_1
+  - cabinet_0 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> curtain_0
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_0
+  - cabinet_1 --[on]--> mirror_1
+  - bed_1 --[next to  ]--> curtain_0
+  - cabinet_1 --[on]--> table_0
+  - bed_2 --[on]--> mirror_0
+  - bed_3 --[next to]--> cabinet_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_2 --[next to]--> cabinet_0
+  - bed_1 --[on  ]--> table_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - cabinet_1 --[next to]--> bed_1
+  - bed_0 --[on  ]--> mirror_0
+  - cabinet_1 --[on]--> cabinet_0
+  - table_0 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> sofa_0
+  - table_0 --[next to]--> curtain_0
+  - bed_3 --[on]--> mirror_0
+  - bed_3 --[next to]--> sofa_0
+  - table_1 --[on  ]--> table_0
+  - mirror_1 --[next to]--> cabinet_0
+  - cabinet_1 --[on]--> mirror_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_3 --[on]--> bed_1
+  - table_0 --[on]--> mirror_1
+===============
+update_observation 256...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+  - bed_2 | bed_2 | pos=[458, 480]
+  - bed_3 | bed_3 | pos=[450, 482]
+  - cabinet_1 | cabinet_1 | pos=[445, 490]
+Edges:
+  - table_1 --[beside  ]--> curtain_0
+  - table_1 --[next to  ]--> sofa_0
+  - bed_2 --[next to]--> table_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - bed_3 --[next to]--> curtain_0
+  - bed_3 --[on]--> bed_2
+  - bed_2 --[next to]--> sofa_0
+  - bed_3 --[on]--> mirror_1
+  - table_1 --[on  ]--> mirror_1
+  - cabinet_1 --[next to]--> bed_2
+  - cabinet_1 --[next to]--> bed_3
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - bed_2 --[on]--> bed_1
+  - bed_2 --[next to]--> table_1
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_2 --[on]--> bed_0
+  - bed_3 --[on]--> table_0
+  - cabinet_1 --[on]--> table_1
+  - bed_3 --[on]--> table_1
+  - table_1 --[on  ]--> mirror_0
+  - bed_3 --[on]--> bed_0
+  - bed_2 --[next to]--> curtain_0
+  - bed_2 --[on]--> mirror_1
+  - cabinet_0 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> curtain_0
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_0
+  - cabinet_1 --[on]--> mirror_1
+  - bed_1 --[next to  ]--> curtain_0
+  - cabinet_1 --[on]--> table_0
+  - bed_2 --[on]--> mirror_0
+  - bed_3 --[next to]--> cabinet_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_2 --[next to]--> cabinet_0
+  - bed_1 --[on  ]--> table_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - cabinet_1 --[next to]--> bed_1
+  - bed_0 --[on  ]--> mirror_0
+  - cabinet_1 --[on]--> cabinet_0
+  - table_0 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> sofa_0
+  - table_0 --[next to]--> curtain_0
+  - bed_3 --[on]--> mirror_0
+  - bed_3 --[next to]--> sofa_0
+  - table_1 --[on  ]--> table_0
+  - mirror_1 --[next to]--> cabinet_0
+  - cabinet_1 --[on]--> mirror_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_3 --[on]--> bed_1
+  - table_0 --[on]--> mirror_1
+===============
+update_observation 258...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+  - bed_2 | bed_2 | pos=[458, 480]
+  - bed_3 | bed_3 | pos=[450, 482]
+  - cabinet_1 | cabinet_1 | pos=[445, 490]
+Edges:
+  - table_1 --[beside  ]--> curtain_0
+  - table_1 --[next to  ]--> sofa_0
+  - bed_2 --[next to]--> table_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - bed_3 --[next to]--> curtain_0
+  - bed_3 --[on]--> bed_2
+  - bed_2 --[next to]--> sofa_0
+  - bed_3 --[on]--> mirror_1
+  - table_1 --[on  ]--> mirror_1
+  - cabinet_1 --[next to]--> bed_2
+  - cabinet_1 --[next to]--> bed_3
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - bed_2 --[on]--> bed_1
+  - bed_2 --[next to]--> table_1
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_2 --[on]--> bed_0
+  - bed_3 --[on]--> table_0
+  - cabinet_1 --[on]--> table_1
+  - bed_3 --[on]--> table_1
+  - table_1 --[on  ]--> mirror_0
+  - bed_3 --[on]--> bed_0
+  - bed_2 --[next to]--> curtain_0
+  - bed_2 --[on]--> mirror_1
+  - cabinet_0 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> curtain_0
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_0
+  - cabinet_1 --[on]--> mirror_1
+  - bed_1 --[next to  ]--> curtain_0
+  - cabinet_1 --[on]--> table_0
+  - bed_2 --[on]--> mirror_0
+  - bed_3 --[next to]--> cabinet_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_2 --[next to]--> cabinet_0
+  - bed_1 --[on  ]--> table_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - cabinet_1 --[next to]--> bed_1
+  - bed_0 --[on  ]--> mirror_0
+  - cabinet_1 --[on]--> cabinet_0
+  - table_0 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> sofa_0
+  - table_0 --[next to]--> curtain_0
+  - bed_3 --[on]--> mirror_0
+  - bed_3 --[next to]--> sofa_0
+  - table_1 --[on  ]--> table_0
+  - mirror_1 --[next to]--> cabinet_0
+  - cabinet_1 --[on]--> mirror_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_3 --[on]--> bed_1
+  - table_0 --[on]--> mirror_1
+===============
+update_observation 260...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+  - bed_2 | bed_2 | pos=[458, 480]
+  - bed_3 | bed_3 | pos=[450, 482]
+  - cabinet_1 | cabinet_1 | pos=[445, 490]
+Edges:
+  - table_1 --[beside  ]--> curtain_0
+  - table_1 --[next to  ]--> sofa_0
+  - bed_2 --[next to]--> table_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - bed_3 --[next to]--> curtain_0
+  - bed_3 --[on]--> bed_2
+  - bed_2 --[next to]--> sofa_0
+  - bed_3 --[on]--> mirror_1
+  - table_1 --[on  ]--> mirror_1
+  - cabinet_1 --[next to]--> bed_2
+  - cabinet_1 --[next to]--> bed_3
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - bed_2 --[on]--> bed_1
+  - bed_2 --[next to]--> table_1
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_2 --[on]--> bed_0
+  - bed_3 --[on]--> table_0
+  - cabinet_1 --[on]--> table_1
+  - bed_3 --[on]--> table_1
+  - table_1 --[on  ]--> mirror_0
+  - bed_3 --[on]--> bed_0
+  - bed_2 --[next to]--> curtain_0
+  - bed_2 --[on]--> mirror_1
+  - cabinet_0 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> curtain_0
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_0
+  - cabinet_1 --[on]--> mirror_1
+  - bed_1 --[next to  ]--> curtain_0
+  - cabinet_1 --[on]--> table_0
+  - bed_2 --[on]--> mirror_0
+  - bed_3 --[next to]--> cabinet_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_2 --[next to]--> cabinet_0
+  - bed_1 --[on  ]--> table_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - cabinet_1 --[next to]--> bed_1
+  - bed_0 --[on  ]--> mirror_0
+  - cabinet_1 --[on]--> cabinet_0
+  - table_0 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> sofa_0
+  - table_0 --[next to]--> curtain_0
+  - bed_3 --[on]--> mirror_0
+  - bed_3 --[next to]--> sofa_0
+  - table_1 --[on  ]--> table_0
+  - mirror_1 --[next to]--> cabinet_0
+  - cabinet_1 --[on]--> mirror_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_3 --[on]--> bed_1
+  - table_0 --[on]--> mirror_1
+===============
+update_observation 262...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ on
+on
+on
+on
+on
+on
+on
+on
+on
+on
+on
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+  - bed_2 | bed_2 | pos=[458, 480]
+  - bed_3 | bed_3 | pos=[450, 482]
+  - cabinet_1 | cabinet_1 | pos=[445, 490]
+  - picture_0 | picture_0 | pos=[456, 449]
+Edges:
+  - table_1 --[beside  ]--> curtain_0
+  - table_1 --[next to  ]--> sofa_0
+  - bed_2 --[next to]--> table_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - bed_3 --[next to]--> curtain_0
+  - bed_3 --[on]--> bed_2
+  - bed_2 --[next to]--> sofa_0
+  - bed_3 --[on]--> mirror_1
+  - table_1 --[on  ]--> mirror_1
+  - cabinet_1 --[next to]--> bed_2
+  - cabinet_1 --[next to]--> bed_3
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - bed_2 --[on]--> bed_1
+  - bed_2 --[next to]--> table_1
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_2 --[on]--> bed_0
+  - bed_3 --[on]--> table_0
+  - cabinet_1 --[on]--> table_1
+  - bed_3 --[on]--> table_1
+  - table_1 --[on  ]--> mirror_0
+  - bed_3 --[on]--> bed_0
+  - bed_2 --[next to]--> curtain_0
+  - bed_2 --[on]--> mirror_1
+  - cabinet_0 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> curtain_0
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_0
+  - cabinet_1 --[on]--> mirror_1
+  - bed_1 --[next to  ]--> curtain_0
+  - cabinet_1 --[on]--> table_0
+  - bed_2 --[on]--> mirror_0
+  - bed_3 --[next to]--> cabinet_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_2 --[next to]--> cabinet_0
+  - bed_1 --[on  ]--> table_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - cabinet_1 --[next to]--> bed_1
+  - bed_0 --[on  ]--> mirror_0
+  - cabinet_1 --[on]--> cabinet_0
+  - table_0 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> sofa_0
+  - table_0 --[next to]--> curtain_0
+  - bed_3 --[on]--> mirror_0
+  - bed_3 --[next to]--> sofa_0
+  - table_1 --[on  ]--> table_0
+  - mirror_1 --[next to]--> cabinet_0
+  - cabinet_1 --[on]--> mirror_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_3 --[on]--> bed_1
+  - table_0 --[on]--> mirror_1
+===============
+update_observation 264...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+  - bed_2 | bed_2 | pos=[458, 480]
+  - bed_3 | bed_3 | pos=[450, 482]
+  - cabinet_1 | cabinet_1 | pos=[445, 490]
+  - picture_0 | picture_0 | pos=[456, 449]
+Edges:
+  - table_1 --[beside  ]--> curtain_0
+  - table_1 --[next to  ]--> sofa_0
+  - bed_2 --[next to]--> table_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - bed_3 --[next to]--> curtain_0
+  - bed_3 --[on]--> bed_2
+  - bed_2 --[next to]--> sofa_0
+  - bed_3 --[on]--> mirror_1
+  - table_1 --[on  ]--> mirror_1
+  - cabinet_1 --[next to]--> bed_2
+  - cabinet_1 --[next to]--> bed_3
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - bed_2 --[on]--> bed_1
+  - bed_2 --[next to]--> table_1
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_2 --[on]--> bed_0
+  - bed_3 --[on]--> table_0
+  - cabinet_1 --[on]--> table_1
+  - bed_3 --[on]--> table_1
+  - table_1 --[on  ]--> mirror_0
+  - bed_3 --[on]--> bed_0
+  - bed_2 --[next to]--> curtain_0
+  - bed_2 --[on]--> mirror_1
+  - cabinet_0 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> curtain_0
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_0
+  - cabinet_1 --[on]--> mirror_1
+  - bed_1 --[next to  ]--> curtain_0
+  - cabinet_1 --[on]--> table_0
+  - bed_2 --[on]--> mirror_0
+  - bed_3 --[next to]--> cabinet_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_2 --[next to]--> cabinet_0
+  - bed_1 --[on  ]--> table_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - cabinet_1 --[next to]--> bed_1
+  - bed_0 --[on  ]--> mirror_0
+  - cabinet_1 --[on]--> cabinet_0
+  - table_0 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> sofa_0
+  - table_0 --[next to]--> curtain_0
+  - bed_3 --[on]--> mirror_0
+  - bed_3 --[next to]--> sofa_0
+  - table_1 --[on  ]--> table_0
+  - mirror_1 --[next to]--> cabinet_0
+  - cabinet_1 --[on]--> mirror_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_3 --[on]--> bed_1
+  - table_0 --[on]--> mirror_1
+===============
+update_observation 266...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+  - bed_2 | bed_2 | pos=[458, 480]
+  - bed_3 | bed_3 | pos=[450, 482]
+  - cabinet_1 | cabinet_1 | pos=[445, 490]
+  - picture_0 | picture_0 | pos=[456, 449]
+Edges:
+  - table_1 --[beside  ]--> curtain_0
+  - table_1 --[next to  ]--> sofa_0
+  - bed_2 --[next to]--> table_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - bed_3 --[next to]--> curtain_0
+  - bed_3 --[on]--> bed_2
+  - bed_2 --[next to]--> sofa_0
+  - bed_3 --[on]--> mirror_1
+  - table_1 --[on  ]--> mirror_1
+  - cabinet_1 --[next to]--> bed_2
+  - cabinet_1 --[next to]--> bed_3
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - bed_2 --[on]--> bed_1
+  - bed_2 --[next to]--> table_1
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_2 --[on]--> bed_0
+  - bed_3 --[on]--> table_0
+  - cabinet_1 --[on]--> table_1
+  - bed_3 --[on]--> table_1
+  - table_1 --[on  ]--> mirror_0
+  - bed_3 --[on]--> bed_0
+  - bed_2 --[next to]--> curtain_0
+  - bed_2 --[on]--> mirror_1
+  - cabinet_0 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> curtain_0
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_0
+  - cabinet_1 --[on]--> mirror_1
+  - bed_1 --[next to  ]--> curtain_0
+  - cabinet_1 --[on]--> table_0
+  - bed_2 --[on]--> mirror_0
+  - bed_3 --[next to]--> cabinet_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_2 --[next to]--> cabinet_0
+  - bed_1 --[on  ]--> table_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - cabinet_1 --[next to]--> bed_1
+  - bed_0 --[on  ]--> mirror_0
+  - cabinet_1 --[on]--> cabinet_0
+  - table_0 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> sofa_0
+  - table_0 --[next to]--> curtain_0
+  - bed_3 --[on]--> mirror_0
+  - bed_3 --[next to]--> sofa_0
+  - table_1 --[on  ]--> table_0
+  - mirror_1 --[next to]--> cabinet_0
+  - cabinet_1 --[on]--> mirror_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_3 --[on]--> bed_1
+  - table_0 --[on]--> mirror_1
+===============
+update_observation 268...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+  - bed_2 | bed_2 | pos=[458, 480]
+  - bed_3 | bed_3 | pos=[450, 482]
+  - cabinet_1 | cabinet_1 | pos=[445, 490]
+  - picture_0 | picture_0 | pos=[456, 449]
+Edges:
+  - table_1 --[beside  ]--> curtain_0
+  - table_1 --[next to  ]--> sofa_0
+  - bed_2 --[next to]--> table_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - bed_3 --[next to]--> curtain_0
+  - bed_3 --[on]--> bed_2
+  - bed_2 --[next to]--> sofa_0
+  - bed_3 --[on]--> mirror_1
+  - table_1 --[on  ]--> mirror_1
+  - cabinet_1 --[next to]--> bed_2
+  - cabinet_1 --[next to]--> bed_3
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - bed_2 --[on]--> bed_1
+  - bed_2 --[next to]--> table_1
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_2 --[on]--> bed_0
+  - bed_3 --[on]--> table_0
+  - cabinet_1 --[on]--> table_1
+  - bed_3 --[on]--> table_1
+  - table_1 --[on  ]--> mirror_0
+  - bed_3 --[on]--> bed_0
+  - bed_2 --[next to]--> curtain_0
+  - bed_2 --[on]--> mirror_1
+  - cabinet_0 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> curtain_0
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_0
+  - cabinet_1 --[on]--> mirror_1
+  - bed_1 --[next to  ]--> curtain_0
+  - cabinet_1 --[on]--> table_0
+  - bed_2 --[on]--> mirror_0
+  - bed_3 --[next to]--> cabinet_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_2 --[next to]--> cabinet_0
+  - bed_1 --[on  ]--> table_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - cabinet_1 --[next to]--> bed_1
+  - bed_0 --[on  ]--> mirror_0
+  - cabinet_1 --[on]--> cabinet_0
+  - table_0 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> sofa_0
+  - table_0 --[next to]--> curtain_0
+  - bed_3 --[on]--> mirror_0
+  - bed_3 --[next to]--> sofa_0
+  - table_1 --[on  ]--> table_0
+  - mirror_1 --[next to]--> cabinet_0
+  - cabinet_1 --[on]--> mirror_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_3 --[on]--> bed_1
+  - table_0 --[on]--> mirror_1
+===============
+update_observation 270...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+  - bed_2 | bed_2 | pos=[458, 480]
+  - bed_3 | bed_3 | pos=[450, 482]
+  - cabinet_1 | cabinet_1 | pos=[445, 490]
+  - picture_0 | picture_0 | pos=[456, 449]
+Edges:
+  - table_1 --[beside  ]--> curtain_0
+  - table_1 --[next to  ]--> sofa_0
+  - bed_2 --[next to]--> table_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - bed_3 --[next to]--> curtain_0
+  - bed_3 --[on]--> bed_2
+  - bed_2 --[next to]--> sofa_0
+  - bed_3 --[on]--> mirror_1
+  - table_1 --[on  ]--> mirror_1
+  - cabinet_1 --[next to]--> bed_2
+  - cabinet_1 --[next to]--> bed_3
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - bed_2 --[on]--> bed_1
+  - bed_2 --[next to]--> table_1
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_0 --[next to  ]--> sofa_0
+  - bed_2 --[on]--> bed_0
+  - bed_3 --[on]--> table_0
+  - cabinet_1 --[on]--> table_1
+  - bed_3 --[on]--> table_1
+  - table_1 --[on  ]--> mirror_0
+  - bed_3 --[on]--> bed_0
+  - bed_2 --[next to]--> curtain_0
+  - bed_2 --[on]--> mirror_1
+  - cabinet_0 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> curtain_0
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_0
+  - cabinet_1 --[on]--> mirror_1
+  - bed_1 --[next to  ]--> curtain_0
+  - cabinet_1 --[on]--> table_0
+  - bed_2 --[on]--> mirror_0
+  - bed_3 --[next to]--> cabinet_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_2 --[next to]--> cabinet_0
+  - bed_1 --[on  ]--> table_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - cabinet_1 --[next to]--> bed_1
+  - bed_0 --[on  ]--> mirror_0
+  - cabinet_1 --[on]--> cabinet_0
+  - table_0 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_0
+  - table_1 --[next to]--> cabinet_0
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> sofa_0
+  - table_0 --[next to]--> curtain_0
+  - bed_3 --[on]--> mirror_0
+  - bed_3 --[next to]--> sofa_0
+  - table_1 --[on  ]--> table_0
+  - mirror_1 --[next to]--> cabinet_0
+  - cabinet_1 --[on]--> mirror_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+  - bed_3 --[on]--> bed_1
+  - table_0 --[on]--> mirror_1
+===============
+update_observation 272...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ next to
+next to
+next to
+next to
+next to
+next to
+next to
+next to
+next to
+next to
+next to
+next to
+next to
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+  - bed_2 | bed_2 | pos=[458, 480]
+  - bed_3 | bed_3 | pos=[450, 482]
+  - cabinet_1 | cabinet_1 | pos=[445, 490]
+  - picture_0 | picture_0 | pos=[456, 449]
+  - windows_0 | windows_0 | pos=[516, 397]
+Edges:
+  - table_1 --[next to  ]--> sofa_0
+  - bed_2 --[next to]--> table_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - bed_3 --[next to]--> curtain_0
+  - bed_2 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_2
+  - cabinet_1 --[next to]--> bed_3
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - bed_2 --[on]--> bed_1
+  - bed_2 --[next to]--> table_1
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_2 --[on]--> bed_0
+  - bed_3 --[on]--> table_0
+  - bed_3 --[on]--> table_1
+  - table_1 --[on  ]--> mirror_0
+  - bed_3 --[on]--> bed_0
+  - bed_2 --[next to]--> curtain_0
+  - bed_2 --[on]--> mirror_1
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_0
+  - cabinet_1 --[on]--> mirror_1
+  - bed_1 --[next to  ]--> curtain_0
+  - cabinet_1 --[on]--> table_0
+  - bed_2 --[on]--> mirror_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_1 --[on  ]--> table_0
+  - windows_0 --[next to]--> mirror_0
+  - bed_2 --[next to]--> cabinet_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - cabinet_1 --[next to]--> bed_1
+  - windows_0 --[next to]--> bed_2
+  - windows_0 --[next to]--> table_1
+  - cabinet_1 --[on]--> cabinet_0
+  - table_0 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_0
+  - table_1 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> table_0
+  - windows_0 --[next to]--> table_0
+  - windows_0 --[next to]--> bed_0
+  - bed_0 --[next to]--> cabinet_0
+  - bed_3 --[on]--> bed_1
+  - windows_0 --[next to]--> bed_1
+  - windows_0 --[next to]--> mirror_1
+  - table_0 --[on]--> mirror_1
+  - windows_0 --[next to]--> cabinet_0
+  - windows_0 --[next to]--> curtain_0
+  - windows_0 --[next to]--> sofa_0
+  - table_1 --[beside  ]--> curtain_0
+  - windows_0 --[next to]--> bed_3
+  - windows_0 --[next to]--> cabinet_1
+  - bed_3 --[on]--> bed_2
+  - windows_0 --[next to]--> picture_0
+  - bed_3 --[on]--> mirror_1
+  - table_1 --[on  ]--> mirror_1
+  - bed_0 --[next to  ]--> sofa_0
+  - cabinet_1 --[on]--> table_1
+  - cabinet_1 --[next to]--> curtain_0
+  - cabinet_0 --[on]--> mirror_0
+  - bed_3 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> sofa_0
+  - table_0 --[next to]--> curtain_0
+  - bed_3 --[on]--> mirror_0
+  - bed_3 --[next to]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - cabinet_1 --[on]--> mirror_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+===============
+update_observation 274...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ next to
+next to
+on
+on
+next to
+next to
+next to
+on
+on
+next to
+next to
+next to
+next to
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+  - bed_2 | bed_2 | pos=[458, 480]
+  - bed_3 | bed_3 | pos=[450, 482]
+  - cabinet_1 | cabinet_1 | pos=[445, 490]
+  - picture_0 | picture_0 | pos=[456, 449]
+  - windows_0 | windows_0 | pos=[516, 397]
+  - table_2 | table_2 | pos=[522, 391]
+Edges:
+  - table_1 --[next to  ]--> sofa_0
+  - bed_2 --[next to]--> table_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - bed_3 --[next to]--> curtain_0
+  - bed_2 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_2
+  - cabinet_1 --[next to]--> bed_3
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - bed_2 --[on]--> bed_1
+  - bed_2 --[next to]--> table_1
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_2 --[on]--> bed_0
+  - bed_3 --[on]--> table_0
+  - bed_3 --[on]--> table_1
+  - table_1 --[on  ]--> mirror_0
+  - bed_3 --[on]--> bed_0
+  - bed_2 --[next to]--> curtain_0
+  - bed_2 --[on]--> mirror_1
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_0
+  - cabinet_1 --[on]--> mirror_1
+  - bed_1 --[next to  ]--> curtain_0
+  - cabinet_1 --[on]--> table_0
+  - bed_2 --[on]--> mirror_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_1 --[on  ]--> table_0
+  - windows_0 --[next to]--> mirror_0
+  - bed_2 --[next to]--> cabinet_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - cabinet_1 --[next to]--> bed_1
+  - windows_0 --[next to]--> bed_2
+  - windows_0 --[next to]--> table_1
+  - cabinet_1 --[on]--> cabinet_0
+  - table_0 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_0
+  - table_1 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> table_0
+  - windows_0 --[next to]--> table_0
+  - windows_0 --[next to]--> bed_0
+  - bed_0 --[next to]--> cabinet_0
+  - bed_3 --[on]--> bed_1
+  - windows_0 --[next to]--> bed_1
+  - windows_0 --[next to]--> mirror_1
+  - table_0 --[on]--> mirror_1
+  - windows_0 --[next to]--> cabinet_0
+  - windows_0 --[next to]--> curtain_0
+  - windows_0 --[next to]--> sofa_0
+  - table_1 --[beside  ]--> curtain_0
+  - windows_0 --[next to]--> bed_3
+  - windows_0 --[next to]--> cabinet_1
+  - bed_3 --[on]--> bed_2
+  - windows_0 --[next to]--> picture_0
+  - bed_3 --[on]--> mirror_1
+  - table_1 --[on  ]--> mirror_1
+  - bed_0 --[next to  ]--> sofa_0
+  - cabinet_1 --[on]--> table_1
+  - cabinet_1 --[next to]--> curtain_0
+  - cabinet_0 --[on]--> mirror_0
+  - bed_3 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> sofa_0
+  - table_0 --[next to]--> curtain_0
+  - bed_3 --[on]--> mirror_0
+  - bed_3 --[next to]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - cabinet_1 --[on]--> mirror_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+===============
+update_observation 276...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+  - bed_2 | bed_2 | pos=[458, 480]
+  - bed_3 | bed_3 | pos=[450, 482]
+  - cabinet_1 | cabinet_1 | pos=[445, 490]
+  - picture_0 | picture_0 | pos=[456, 449]
+  - windows_0 | windows_0 | pos=[516, 397]
+  - table_2 | table_2 | pos=[522, 391]
+Edges:
+  - table_1 --[next to  ]--> sofa_0
+  - bed_2 --[next to]--> table_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - bed_3 --[next to]--> curtain_0
+  - bed_2 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_2
+  - cabinet_1 --[next to]--> bed_3
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - bed_2 --[on]--> bed_1
+  - bed_2 --[next to]--> table_1
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_2 --[on]--> bed_0
+  - bed_3 --[on]--> table_0
+  - bed_3 --[on]--> table_1
+  - table_1 --[on  ]--> mirror_0
+  - bed_3 --[on]--> bed_0
+  - bed_2 --[next to]--> curtain_0
+  - bed_2 --[on]--> mirror_1
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_0
+  - cabinet_1 --[on]--> mirror_1
+  - bed_1 --[next to  ]--> curtain_0
+  - cabinet_1 --[on]--> table_0
+  - bed_2 --[on]--> mirror_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_1 --[on  ]--> table_0
+  - windows_0 --[next to]--> mirror_0
+  - bed_2 --[next to]--> cabinet_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - cabinet_1 --[next to]--> bed_1
+  - windows_0 --[next to]--> bed_2
+  - windows_0 --[next to]--> table_1
+  - cabinet_1 --[on]--> cabinet_0
+  - table_0 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_0
+  - table_1 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> table_0
+  - windows_0 --[next to]--> table_0
+  - windows_0 --[next to]--> bed_0
+  - bed_0 --[next to]--> cabinet_0
+  - bed_3 --[on]--> bed_1
+  - windows_0 --[next to]--> bed_1
+  - windows_0 --[next to]--> mirror_1
+  - table_0 --[on]--> mirror_1
+  - windows_0 --[next to]--> cabinet_0
+  - windows_0 --[next to]--> curtain_0
+  - windows_0 --[next to]--> sofa_0
+  - table_1 --[beside  ]--> curtain_0
+  - windows_0 --[next to]--> bed_3
+  - windows_0 --[next to]--> cabinet_1
+  - bed_3 --[on]--> bed_2
+  - windows_0 --[next to]--> picture_0
+  - bed_3 --[on]--> mirror_1
+  - table_1 --[on  ]--> mirror_1
+  - bed_0 --[next to  ]--> sofa_0
+  - cabinet_1 --[on]--> table_1
+  - cabinet_1 --[next to]--> curtain_0
+  - cabinet_0 --[on]--> mirror_0
+  - bed_3 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> sofa_0
+  - table_0 --[next to]--> curtain_0
+  - bed_3 --[on]--> mirror_0
+  - bed_3 --[next to]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - cabinet_1 --[on]--> mirror_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+===============
+update_observation 278...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+  - bed_2 | bed_2 | pos=[458, 480]
+  - bed_3 | bed_3 | pos=[450, 482]
+  - cabinet_1 | cabinet_1 | pos=[445, 490]
+  - picture_0 | picture_0 | pos=[456, 449]
+  - windows_0 | windows_0 | pos=[516, 397]
+  - table_2 | table_2 | pos=[522, 391]
+Edges:
+  - table_1 --[next to  ]--> sofa_0
+  - bed_2 --[next to]--> table_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - bed_3 --[next to]--> curtain_0
+  - bed_2 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_2
+  - cabinet_1 --[next to]--> bed_3
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - bed_2 --[on]--> bed_1
+  - bed_2 --[next to]--> table_1
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_2 --[on]--> bed_0
+  - bed_3 --[on]--> table_0
+  - bed_3 --[on]--> table_1
+  - table_1 --[on  ]--> mirror_0
+  - bed_3 --[on]--> bed_0
+  - bed_2 --[next to]--> curtain_0
+  - bed_2 --[on]--> mirror_1
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_0
+  - cabinet_1 --[on]--> mirror_1
+  - bed_1 --[next to  ]--> curtain_0
+  - cabinet_1 --[on]--> table_0
+  - bed_2 --[on]--> mirror_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_1 --[on  ]--> table_0
+  - windows_0 --[next to]--> mirror_0
+  - bed_2 --[next to]--> cabinet_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - cabinet_1 --[next to]--> bed_1
+  - windows_0 --[next to]--> bed_2
+  - windows_0 --[next to]--> table_1
+  - cabinet_1 --[on]--> cabinet_0
+  - table_0 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_0
+  - table_1 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> table_0
+  - windows_0 --[next to]--> table_0
+  - windows_0 --[next to]--> bed_0
+  - bed_0 --[next to]--> cabinet_0
+  - bed_3 --[on]--> bed_1
+  - windows_0 --[next to]--> bed_1
+  - windows_0 --[next to]--> mirror_1
+  - table_0 --[on]--> mirror_1
+  - windows_0 --[next to]--> cabinet_0
+  - windows_0 --[next to]--> curtain_0
+  - windows_0 --[next to]--> sofa_0
+  - table_1 --[beside  ]--> curtain_0
+  - windows_0 --[next to]--> bed_3
+  - windows_0 --[next to]--> cabinet_1
+  - bed_3 --[on]--> bed_2
+  - windows_0 --[next to]--> picture_0
+  - bed_3 --[on]--> mirror_1
+  - table_1 --[on  ]--> mirror_1
+  - bed_0 --[next to  ]--> sofa_0
+  - cabinet_1 --[on]--> table_1
+  - cabinet_1 --[next to]--> curtain_0
+  - cabinet_0 --[on]--> mirror_0
+  - bed_3 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> sofa_0
+  - table_0 --[next to]--> curtain_0
+  - bed_3 --[on]--> mirror_0
+  - bed_3 --[next to]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - cabinet_1 --[on]--> mirror_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+===============
+update_observation 280...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+  - bed_2 | bed_2 | pos=[458, 480]
+  - bed_3 | bed_3 | pos=[450, 482]
+  - cabinet_1 | cabinet_1 | pos=[445, 490]
+  - picture_0 | picture_0 | pos=[456, 449]
+  - windows_0 | windows_0 | pos=[516, 397]
+  - table_2 | table_2 | pos=[522, 391]
+Edges:
+  - table_1 --[next to  ]--> sofa_0
+  - bed_2 --[next to]--> table_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - bed_3 --[next to]--> curtain_0
+  - bed_2 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_2
+  - cabinet_1 --[next to]--> bed_3
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - bed_2 --[on]--> bed_1
+  - bed_2 --[next to]--> table_1
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_2 --[on]--> bed_0
+  - bed_3 --[on]--> table_0
+  - bed_3 --[on]--> table_1
+  - table_1 --[on  ]--> mirror_0
+  - bed_3 --[on]--> bed_0
+  - bed_2 --[next to]--> curtain_0
+  - bed_2 --[on]--> mirror_1
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_0
+  - cabinet_1 --[on]--> mirror_1
+  - bed_1 --[next to  ]--> curtain_0
+  - cabinet_1 --[on]--> table_0
+  - bed_2 --[on]--> mirror_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_1 --[on  ]--> table_0
+  - windows_0 --[next to]--> mirror_0
+  - bed_2 --[next to]--> cabinet_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - cabinet_1 --[next to]--> bed_1
+  - windows_0 --[next to]--> bed_2
+  - windows_0 --[next to]--> table_1
+  - cabinet_1 --[on]--> cabinet_0
+  - table_0 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_0
+  - table_1 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> table_0
+  - windows_0 --[next to]--> table_0
+  - windows_0 --[next to]--> bed_0
+  - bed_0 --[next to]--> cabinet_0
+  - bed_3 --[on]--> bed_1
+  - windows_0 --[next to]--> bed_1
+  - windows_0 --[next to]--> mirror_1
+  - table_0 --[on]--> mirror_1
+  - windows_0 --[next to]--> cabinet_0
+  - windows_0 --[next to]--> curtain_0
+  - windows_0 --[next to]--> sofa_0
+  - table_1 --[beside  ]--> curtain_0
+  - windows_0 --[next to]--> bed_3
+  - windows_0 --[next to]--> cabinet_1
+  - bed_3 --[on]--> bed_2
+  - windows_0 --[next to]--> picture_0
+  - bed_3 --[on]--> mirror_1
+  - table_1 --[on  ]--> mirror_1
+  - bed_0 --[next to  ]--> sofa_0
+  - cabinet_1 --[on]--> table_1
+  - cabinet_1 --[next to]--> curtain_0
+  - cabinet_0 --[on]--> mirror_0
+  - bed_3 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> sofa_0
+  - table_0 --[next to]--> curtain_0
+  - bed_3 --[on]--> mirror_0
+  - bed_3 --[next to]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - cabinet_1 --[on]--> mirror_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+===============
+update_observation 282...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+  - bed_2 | bed_2 | pos=[458, 480]
+  - bed_3 | bed_3 | pos=[450, 482]
+  - cabinet_1 | cabinet_1 | pos=[445, 490]
+  - picture_0 | picture_0 | pos=[456, 449]
+  - windows_0 | windows_0 | pos=[516, 397]
+  - table_2 | table_2 | pos=[522, 391]
+Edges:
+  - table_1 --[next to  ]--> sofa_0
+  - bed_2 --[next to]--> table_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - bed_3 --[next to]--> curtain_0
+  - bed_2 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_2
+  - cabinet_1 --[next to]--> bed_3
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - bed_2 --[on]--> bed_1
+  - bed_2 --[next to]--> table_1
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_2 --[on]--> bed_0
+  - bed_3 --[on]--> table_0
+  - bed_3 --[on]--> table_1
+  - table_1 --[on  ]--> mirror_0
+  - bed_3 --[on]--> bed_0
+  - bed_2 --[next to]--> curtain_0
+  - bed_2 --[on]--> mirror_1
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_0
+  - cabinet_1 --[on]--> mirror_1
+  - bed_1 --[next to  ]--> curtain_0
+  - cabinet_1 --[on]--> table_0
+  - bed_2 --[on]--> mirror_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_1 --[on  ]--> table_0
+  - windows_0 --[next to]--> mirror_0
+  - bed_2 --[next to]--> cabinet_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - cabinet_1 --[next to]--> bed_1
+  - windows_0 --[next to]--> bed_2
+  - windows_0 --[next to]--> table_1
+  - cabinet_1 --[on]--> cabinet_0
+  - table_0 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_0
+  - table_1 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> table_0
+  - windows_0 --[next to]--> table_0
+  - windows_0 --[next to]--> bed_0
+  - bed_0 --[next to]--> cabinet_0
+  - bed_3 --[on]--> bed_1
+  - windows_0 --[next to]--> bed_1
+  - windows_0 --[next to]--> mirror_1
+  - table_0 --[on]--> mirror_1
+  - windows_0 --[next to]--> cabinet_0
+  - windows_0 --[next to]--> curtain_0
+  - windows_0 --[next to]--> sofa_0
+  - table_1 --[beside  ]--> curtain_0
+  - windows_0 --[next to]--> bed_3
+  - windows_0 --[next to]--> cabinet_1
+  - bed_3 --[on]--> bed_2
+  - windows_0 --[next to]--> picture_0
+  - bed_3 --[on]--> mirror_1
+  - table_1 --[on  ]--> mirror_1
+  - bed_0 --[next to  ]--> sofa_0
+  - cabinet_1 --[on]--> table_1
+  - cabinet_1 --[next to]--> curtain_0
+  - cabinet_0 --[on]--> mirror_0
+  - bed_3 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> sofa_0
+  - table_0 --[next to]--> curtain_0
+  - bed_3 --[on]--> mirror_0
+  - bed_3 --[next to]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - cabinet_1 --[on]--> mirror_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ bedroom
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 284...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+  - bed_2 | bed_2 | pos=[458, 480]
+  - bed_3 | bed_3 | pos=[450, 482]
+  - cabinet_1 | cabinet_1 | pos=[445, 490]
+  - picture_0 | picture_0 | pos=[456, 449]
+  - windows_0 | windows_0 | pos=[516, 397]
+  - table_2 | table_2 | pos=[522, 391]
+Edges:
+  - table_1 --[next to  ]--> sofa_0
+  - bed_2 --[next to]--> table_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - bed_3 --[next to]--> curtain_0
+  - bed_2 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_2
+  - cabinet_1 --[next to]--> bed_3
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - bed_2 --[on]--> bed_1
+  - bed_2 --[next to]--> table_1
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_2 --[on]--> bed_0
+  - bed_3 --[on]--> table_0
+  - bed_3 --[on]--> table_1
+  - table_1 --[on  ]--> mirror_0
+  - bed_3 --[on]--> bed_0
+  - bed_2 --[next to]--> curtain_0
+  - bed_2 --[on]--> mirror_1
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_0
+  - cabinet_1 --[on]--> mirror_1
+  - bed_1 --[next to  ]--> curtain_0
+  - cabinet_1 --[on]--> table_0
+  - bed_2 --[on]--> mirror_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_1 --[on  ]--> table_0
+  - windows_0 --[next to]--> mirror_0
+  - bed_2 --[next to]--> cabinet_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - cabinet_1 --[next to]--> bed_1
+  - windows_0 --[next to]--> bed_2
+  - windows_0 --[next to]--> table_1
+  - cabinet_1 --[on]--> cabinet_0
+  - table_0 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_0
+  - table_1 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> table_0
+  - windows_0 --[next to]--> table_0
+  - windows_0 --[next to]--> bed_0
+  - bed_0 --[next to]--> cabinet_0
+  - bed_3 --[on]--> bed_1
+  - windows_0 --[next to]--> bed_1
+  - windows_0 --[next to]--> mirror_1
+  - table_0 --[on]--> mirror_1
+  - windows_0 --[next to]--> cabinet_0
+  - windows_0 --[next to]--> curtain_0
+  - windows_0 --[next to]--> sofa_0
+  - table_1 --[beside  ]--> curtain_0
+  - windows_0 --[next to]--> bed_3
+  - windows_0 --[next to]--> cabinet_1
+  - bed_3 --[on]--> bed_2
+  - windows_0 --[next to]--> picture_0
+  - bed_3 --[on]--> mirror_1
+  - table_1 --[on  ]--> mirror_1
+  - bed_0 --[next to  ]--> sofa_0
+  - cabinet_1 --[on]--> table_1
+  - cabinet_1 --[next to]--> curtain_0
+  - cabinet_0 --[on]--> mirror_0
+  - bed_3 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> sofa_0
+  - table_0 --[next to]--> curtain_0
+  - bed_3 --[on]--> mirror_0
+  - bed_3 --[next to]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - cabinet_1 --[on]--> mirror_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+===============
+update_observation 286...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+  - bed_2 | bed_2 | pos=[458, 480]
+  - bed_3 | bed_3 | pos=[450, 482]
+  - cabinet_1 | cabinet_1 | pos=[445, 490]
+  - picture_0 | picture_0 | pos=[456, 449]
+  - windows_0 | windows_0 | pos=[516, 397]
+  - table_2 | table_2 | pos=[522, 391]
+Edges:
+  - table_1 --[next to  ]--> sofa_0
+  - bed_2 --[next to]--> table_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - bed_3 --[next to]--> curtain_0
+  - bed_2 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_2
+  - cabinet_1 --[next to]--> bed_3
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - bed_2 --[on]--> bed_1
+  - bed_2 --[next to]--> table_1
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_2 --[on]--> bed_0
+  - bed_3 --[on]--> table_0
+  - bed_3 --[on]--> table_1
+  - table_1 --[on  ]--> mirror_0
+  - bed_3 --[on]--> bed_0
+  - bed_2 --[next to]--> curtain_0
+  - bed_2 --[on]--> mirror_1
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_0
+  - cabinet_1 --[on]--> mirror_1
+  - bed_1 --[next to  ]--> curtain_0
+  - cabinet_1 --[on]--> table_0
+  - bed_2 --[on]--> mirror_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_1 --[on  ]--> table_0
+  - windows_0 --[next to]--> mirror_0
+  - bed_2 --[next to]--> cabinet_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - cabinet_1 --[next to]--> bed_1
+  - windows_0 --[next to]--> bed_2
+  - windows_0 --[next to]--> table_1
+  - cabinet_1 --[on]--> cabinet_0
+  - table_0 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_0
+  - table_1 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> table_0
+  - windows_0 --[next to]--> table_0
+  - windows_0 --[next to]--> bed_0
+  - bed_0 --[next to]--> cabinet_0
+  - bed_3 --[on]--> bed_1
+  - windows_0 --[next to]--> bed_1
+  - windows_0 --[next to]--> mirror_1
+  - table_0 --[on]--> mirror_1
+  - windows_0 --[next to]--> cabinet_0
+  - windows_0 --[next to]--> curtain_0
+  - windows_0 --[next to]--> sofa_0
+  - table_1 --[beside  ]--> curtain_0
+  - windows_0 --[next to]--> bed_3
+  - windows_0 --[next to]--> cabinet_1
+  - bed_3 --[on]--> bed_2
+  - windows_0 --[next to]--> picture_0
+  - bed_3 --[on]--> mirror_1
+  - table_1 --[on  ]--> mirror_1
+  - bed_0 --[next to  ]--> sofa_0
+  - cabinet_1 --[on]--> table_1
+  - cabinet_1 --[next to]--> curtain_0
+  - cabinet_0 --[on]--> mirror_0
+  - bed_3 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> sofa_0
+  - table_0 --[next to]--> curtain_0
+  - bed_3 --[on]--> mirror_0
+  - bed_3 --[next to]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - cabinet_1 --[on]--> mirror_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+===============
+update_observation 288...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+  - bed_2 | bed_2 | pos=[458, 480]
+  - bed_3 | bed_3 | pos=[450, 482]
+  - cabinet_1 | cabinet_1 | pos=[445, 490]
+  - picture_0 | picture_0 | pos=[456, 449]
+  - windows_0 | windows_0 | pos=[516, 397]
+  - table_2 | table_2 | pos=[522, 391]
+Edges:
+  - table_1 --[next to  ]--> sofa_0
+  - bed_2 --[next to]--> table_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - bed_3 --[next to]--> curtain_0
+  - bed_2 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_2
+  - cabinet_1 --[next to]--> bed_3
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - bed_2 --[on]--> bed_1
+  - bed_2 --[next to]--> table_1
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_2 --[on]--> bed_0
+  - bed_3 --[on]--> table_0
+  - bed_3 --[on]--> table_1
+  - table_1 --[on  ]--> mirror_0
+  - bed_3 --[on]--> bed_0
+  - bed_2 --[next to]--> curtain_0
+  - bed_2 --[on]--> mirror_1
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_0
+  - cabinet_1 --[on]--> mirror_1
+  - bed_1 --[next to  ]--> curtain_0
+  - cabinet_1 --[on]--> table_0
+  - bed_2 --[on]--> mirror_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_1 --[on  ]--> table_0
+  - windows_0 --[next to]--> mirror_0
+  - bed_2 --[next to]--> cabinet_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - cabinet_1 --[next to]--> bed_1
+  - windows_0 --[next to]--> bed_2
+  - windows_0 --[next to]--> table_1
+  - cabinet_1 --[on]--> cabinet_0
+  - table_0 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_0
+  - table_1 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> table_0
+  - windows_0 --[next to]--> table_0
+  - windows_0 --[next to]--> bed_0
+  - bed_0 --[next to]--> cabinet_0
+  - bed_3 --[on]--> bed_1
+  - windows_0 --[next to]--> bed_1
+  - windows_0 --[next to]--> mirror_1
+  - table_0 --[on]--> mirror_1
+  - windows_0 --[next to]--> cabinet_0
+  - windows_0 --[next to]--> curtain_0
+  - windows_0 --[next to]--> sofa_0
+  - table_1 --[beside  ]--> curtain_0
+  - windows_0 --[next to]--> bed_3
+  - windows_0 --[next to]--> cabinet_1
+  - bed_3 --[on]--> bed_2
+  - windows_0 --[next to]--> picture_0
+  - bed_3 --[on]--> mirror_1
+  - table_1 --[on  ]--> mirror_1
+  - bed_0 --[next to  ]--> sofa_0
+  - cabinet_1 --[on]--> table_1
+  - cabinet_1 --[next to]--> curtain_0
+  - cabinet_0 --[on]--> mirror_0
+  - bed_3 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> sofa_0
+  - table_0 --[next to]--> curtain_0
+  - bed_3 --[on]--> mirror_0
+  - bed_3 --[next to]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - cabinet_1 --[on]--> mirror_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ bedroom
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 290...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+  - bed_2 | bed_2 | pos=[458, 480]
+  - bed_3 | bed_3 | pos=[450, 482]
+  - cabinet_1 | cabinet_1 | pos=[445, 490]
+  - picture_0 | picture_0 | pos=[456, 449]
+  - windows_0 | windows_0 | pos=[516, 397]
+  - table_2 | table_2 | pos=[522, 391]
+Edges:
+  - table_1 --[next to  ]--> sofa_0
+  - bed_2 --[next to]--> table_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - bed_3 --[next to]--> curtain_0
+  - bed_2 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_2
+  - cabinet_1 --[next to]--> bed_3
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - bed_2 --[on]--> bed_1
+  - bed_2 --[next to]--> table_1
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_2 --[on]--> bed_0
+  - bed_3 --[on]--> table_0
+  - bed_3 --[on]--> table_1
+  - table_1 --[on  ]--> mirror_0
+  - bed_3 --[on]--> bed_0
+  - bed_2 --[next to]--> curtain_0
+  - bed_2 --[on]--> mirror_1
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_0
+  - cabinet_1 --[on]--> mirror_1
+  - bed_1 --[next to  ]--> curtain_0
+  - cabinet_1 --[on]--> table_0
+  - bed_2 --[on]--> mirror_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_1 --[on  ]--> table_0
+  - windows_0 --[next to]--> mirror_0
+  - bed_2 --[next to]--> cabinet_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - cabinet_1 --[next to]--> bed_1
+  - windows_0 --[next to]--> bed_2
+  - windows_0 --[next to]--> table_1
+  - cabinet_1 --[on]--> cabinet_0
+  - table_0 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_0
+  - table_1 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> table_0
+  - windows_0 --[next to]--> table_0
+  - windows_0 --[next to]--> bed_0
+  - bed_0 --[next to]--> cabinet_0
+  - bed_3 --[on]--> bed_1
+  - windows_0 --[next to]--> bed_1
+  - windows_0 --[next to]--> mirror_1
+  - table_0 --[on]--> mirror_1
+  - windows_0 --[next to]--> cabinet_0
+  - windows_0 --[next to]--> curtain_0
+  - windows_0 --[next to]--> sofa_0
+  - table_1 --[beside  ]--> curtain_0
+  - windows_0 --[next to]--> bed_3
+  - windows_0 --[next to]--> cabinet_1
+  - bed_3 --[on]--> bed_2
+  - windows_0 --[next to]--> picture_0
+  - bed_3 --[on]--> mirror_1
+  - table_1 --[on  ]--> mirror_1
+  - bed_0 --[next to  ]--> sofa_0
+  - cabinet_1 --[on]--> table_1
+  - cabinet_1 --[next to]--> curtain_0
+  - cabinet_0 --[on]--> mirror_0
+  - bed_3 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> sofa_0
+  - table_0 --[next to]--> curtain_0
+  - bed_3 --[on]--> mirror_0
+  - bed_3 --[next to]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - cabinet_1 --[on]--> mirror_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+===============
+update_observation 292...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+  - bed_2 | bed_2 | pos=[458, 480]
+  - bed_3 | bed_3 | pos=[450, 482]
+  - cabinet_1 | cabinet_1 | pos=[445, 490]
+  - picture_0 | picture_0 | pos=[456, 449]
+  - windows_0 | windows_0 | pos=[516, 397]
+  - table_2 | table_2 | pos=[522, 391]
+Edges:
+  - table_1 --[next to  ]--> sofa_0
+  - bed_2 --[next to]--> table_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - bed_3 --[next to]--> curtain_0
+  - bed_2 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_2
+  - cabinet_1 --[next to]--> bed_3
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - bed_2 --[on]--> bed_1
+  - bed_2 --[next to]--> table_1
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_2 --[on]--> bed_0
+  - bed_3 --[on]--> table_0
+  - bed_3 --[on]--> table_1
+  - table_1 --[on  ]--> mirror_0
+  - bed_3 --[on]--> bed_0
+  - bed_2 --[next to]--> curtain_0
+  - bed_2 --[on]--> mirror_1
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_0
+  - cabinet_1 --[on]--> mirror_1
+  - bed_1 --[next to  ]--> curtain_0
+  - cabinet_1 --[on]--> table_0
+  - bed_2 --[on]--> mirror_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_1 --[on  ]--> table_0
+  - windows_0 --[next to]--> mirror_0
+  - bed_2 --[next to]--> cabinet_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - cabinet_1 --[next to]--> bed_1
+  - windows_0 --[next to]--> bed_2
+  - windows_0 --[next to]--> table_1
+  - cabinet_1 --[on]--> cabinet_0
+  - table_0 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_0
+  - table_1 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> table_0
+  - windows_0 --[next to]--> table_0
+  - windows_0 --[next to]--> bed_0
+  - bed_0 --[next to]--> cabinet_0
+  - bed_3 --[on]--> bed_1
+  - windows_0 --[next to]--> bed_1
+  - windows_0 --[next to]--> mirror_1
+  - table_0 --[on]--> mirror_1
+  - windows_0 --[next to]--> cabinet_0
+  - windows_0 --[next to]--> curtain_0
+  - windows_0 --[next to]--> sofa_0
+  - table_1 --[beside  ]--> curtain_0
+  - windows_0 --[next to]--> bed_3
+  - windows_0 --[next to]--> cabinet_1
+  - bed_3 --[on]--> bed_2
+  - windows_0 --[next to]--> picture_0
+  - bed_3 --[on]--> mirror_1
+  - table_1 --[on  ]--> mirror_1
+  - bed_0 --[next to  ]--> sofa_0
+  - cabinet_1 --[on]--> table_1
+  - cabinet_1 --[next to]--> curtain_0
+  - cabinet_0 --[on]--> mirror_0
+  - bed_3 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> sofa_0
+  - table_0 --[next to]--> curtain_0
+  - bed_3 --[on]--> mirror_0
+  - bed_3 --[next to]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - cabinet_1 --[on]--> mirror_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+===============
+update_observation 294...
+=== Scene Graph ===
+Nodes:
+  - mirror_0 | mirror_0 | pos=[386, 401]
+  - cabinet_0 | cabinet_0 | pos=[387, 405]
+  - mirror_1 | mirror_1 | pos=[389, 363]
+  - sofa_0 | sofa_0 | pos=[400, 371]
+  - bed_0 | bed_0 | pos=[457, 427]
+  - curtain_0 | curtain_0 | pos=[441, 456]
+  - table_0 | table_0 | pos=[402, 489]
+  - table_1 | table_1 | pos=[521, 482]
+  - bed_1 | bed_1 | pos=[473, 481]
+  - bed_2 | bed_2 | pos=[458, 480]
+  - bed_3 | bed_3 | pos=[450, 482]
+  - cabinet_1 | cabinet_1 | pos=[445, 490]
+  - picture_0 | picture_0 | pos=[456, 449]
+  - windows_0 | windows_0 | pos=[516, 397]
+  - table_2 | table_2 | pos=[522, 391]
+Edges:
+  - table_1 --[next to  ]--> sofa_0
+  - bed_2 --[next to]--> table_0
+  - bed_1 --[next to  ]--> cabinet_0
+  - bed_3 --[next to]--> curtain_0
+  - bed_2 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_2
+  - cabinet_1 --[next to]--> bed_3
+  - bed_1 --[on  ]--> mirror_0
+  - bed_1 --[on  ]--> mirror_1
+  - bed_2 --[on]--> bed_1
+  - bed_2 --[next to]--> table_1
+  - bed_1 --[next to  ]--> sofa_0
+  - bed_2 --[on]--> bed_0
+  - bed_3 --[on]--> table_0
+  - bed_3 --[on]--> table_1
+  - table_1 --[on  ]--> mirror_0
+  - bed_3 --[on]--> bed_0
+  - bed_2 --[next to]--> curtain_0
+  - bed_2 --[on]--> mirror_1
+  - bed_1 --[same as]--> bed_0
+  - table_0 --[on]--> mirror_0
+  - cabinet_1 --[on]--> mirror_1
+  - bed_1 --[next to  ]--> curtain_0
+  - cabinet_1 --[on]--> table_0
+  - bed_2 --[on]--> mirror_0
+  - table_1 --[next to  ]--> bed_0
+  - bed_1 --[on  ]--> table_0
+  - windows_0 --[next to]--> mirror_0
+  - bed_2 --[next to]--> cabinet_0
+  - bed_1 --[on  ]--> table_1
+  - table_0 --[on]--> bed_0
+  - cabinet_1 --[next to]--> bed_1
+  - windows_0 --[next to]--> bed_2
+  - windows_0 --[next to]--> table_1
+  - cabinet_1 --[on]--> cabinet_0
+  - table_0 --[next to]--> sofa_0
+  - cabinet_1 --[next to]--> bed_0
+  - table_1 --[next to]--> cabinet_0
+  - table_1 --[on  ]--> table_0
+  - windows_0 --[next to]--> table_0
+  - windows_0 --[next to]--> bed_0
+  - bed_0 --[next to]--> cabinet_0
+  - bed_3 --[on]--> bed_1
+  - windows_0 --[next to]--> bed_1
+  - windows_0 --[next to]--> mirror_1
+  - table_0 --[on]--> mirror_1
+  - windows_0 --[next to]--> cabinet_0
+  - windows_0 --[next to]--> curtain_0
+  - windows_0 --[next to]--> sofa_0
+  - table_1 --[beside  ]--> curtain_0
+  - windows_0 --[next to]--> bed_3
+  - windows_0 --[next to]--> cabinet_1
+  - bed_3 --[on]--> bed_2
+  - windows_0 --[next to]--> picture_0
+  - bed_3 --[on]--> mirror_1
+  - table_1 --[on  ]--> mirror_1
+  - bed_0 --[next to  ]--> sofa_0
+  - cabinet_1 --[on]--> table_1
+  - cabinet_1 --[next to]--> curtain_0
+  - cabinet_0 --[on]--> mirror_0
+  - bed_3 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_0
+  - mirror_1 --[on]--> mirror_0
+  - cabinet_1 --[next to]--> sofa_0
+  - table_0 --[next to]--> curtain_0
+  - bed_3 --[on]--> mirror_0
+  - bed_3 --[next to]--> sofa_0
+  - mirror_1 --[next to]--> cabinet_0
+  - cabinet_1 --[on]--> mirror_0
+  - table_0 --[next to]--> cabinet_0
+  - bed_0 --[on  ]--> mirror_1
+===============
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+-------------find target, waiting, break by ctrl+C-------------------

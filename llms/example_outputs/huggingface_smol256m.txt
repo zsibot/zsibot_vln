@@ -1,0 +1,3356 @@
+final text_encoder_type: bert-base-uncased
+_IncompatibleKeys(missing_keys=[], unexpected_keys=['label_enc.weight', 'bert.embeddings.position_ids'])
+[12/02 16:14:12 detectron2]: Arguments: Namespace(confidence_threshold=0.5, config_file='configs/mask_rcnn_R_50_FPN_3x.yaml', input=['input1.jpeg'], opts=['MODEL.WEIGHTS', 'detectron2://COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x/137849600/model_final_f10217.pkl', 'MODEL.DEVICE', 'cuda:0'], output=None, video_input=None, webcam=False)
+[12/02 16:14:13 d2.checkpoint.detection_checkpoint]: [DetectionCheckpointer] Loading from detectron2://COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x/137849600/model_final_f10217.pkl ...
+
+--------prompt_image2text:
+ Describe the object at the center of the image and indicate the spatial relationship between other objects and it.
+----LLM response:
+ User:
+
+
+
+
+Describe the object at the center of the image and indicate the spatial relationship between other objects and it.
+Assistant: The object at the center of the image is a bed, which is the main subject. The bed is positioned in the center of the image, with the pillows and bedding on either side. The bed is the focal point of the image, and it is surrounded by other objects that are not as prominent. The bed is not the only object in the image, but it is the most prominent one.
+-------------------------------------------------------------------------------------------
+
+--------object prompt: 
+ 
+        Please extract all objects mentioned in the following text description and the output format is "[<object 1>, <object 2>,...]":
+        Text Description: User:
+
+
+
+
+Describe the object at the center of the image and indicate the spatial relationship between other objects and it.
+Assistant: The object at the center of the image is a bed, which is the main subject. The bed is positioned in the center of the image, with the pillows and bedding on either side. The bed is the focal point of the image, and it is surrounded by other objects that are not as prominent. The bed is not the only object in the image, but it is the most prominent one.
+        
+----LLM response: 
+ User: 
+        Please extract all objects mentioned in the following text description and the output format is "[<object 1>, <object 2>,...]":
+        Text Description: User:
+
+
+
+
+Describe the object at the center of the image and indicate the spatial relationship between other objects and it.
+Assistant: The object at the center of the image is a bed, which is the main subject. The bed is positioned in the center of the image, with the pillows and bedding on either side. The bed is the focal point of the image, and it is surrounded by other objects that are not as prominent. The bed is not the only object in the image, but it is the most prominent one.
+        
+Assistant: The object at the center of the image is a bed, which is the main subject. The bed is positioned in the center of the image, with the pillows and bedding on either side. The bed is the focal point of the image, and it is surrounded by other objects that are not as prominent. The bed is not the only object in the image, but it is the most prominent one.
+-------------------------------------------------------------------------------------------
+
+--------relation prompt: 
+ 
+        Please describe the relationships between the above objects in the following text description and provide the information in the specified format.
+        The format should be: "<Object A> and <Object B>: <Object A> is <relation type> <Object B>".
+        If there are multiple relationships, please list them one per line.
+
+        Text Description: User:
+
+
+
+
+Describe the object at the center of the image and indicate the spatial relationship between other objects and it.
+Assistant: The object at the center of the image is a bed, which is the main subject. The bed is positioned in the center of the image, with the pillows and bedding on either side. The bed is the focal point of the image, and it is surrounded by other objects that are not as prominent. The bed is not the only object in the image, but it is the most prominent one.
+
+        Example output format:
+        Book and Table: Book is on Table
+        
+----LLM response: 
+ User: 
+        Please describe the relationships between the above objects in the following text description and provide the information in the specified format.
+        The format should be: "<Object A> and <Object B>: <Object A> is <relation type> <Object B>".
+        If there are multiple relationships, please list them one per line.
+
+        Text Description: User:
+
+
+
+
+Describe the object at the center of the image and indicate the spatial relationship between other objects and it.
+Assistant: The object at the center of the image is a bed, which is the main subject. The bed is positioned in the center of the image, with the pillows and bedding on either side. The bed is the focal point of the image, and it is surrounded by other objects that are not as prominent. The bed is not the only object in the image, but it is the most prominent one.
+
+        Example output format:
+        Book and Table: Book is on Table
+        
+Assistant: The object at the center of the image is a book, which is the main subject. The book is positioned in the center of the image, with the pillows and bedding on either side. The book is not the only object in the image, but it is the most prominent one.
+-------------------------------------------------------------------------------------------
+
+update_observation 0...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+explore_subgraph
+update_observation 2...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+update_observation 4...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+update_observation 6...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+explore_subgraph
+update_observation 8...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+update_observation 10...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+update_observation 12...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+update_observation 14...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+update_observation 16...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+update_observation 18...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+update_observation 20...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+explore_subgraph
+update_observation 22...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+update_observation 24...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+update_observation 26...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+explore_subgraph
+update_observation 28...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+update_observation 30...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+explore_subgraph
+update_observation 32...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+update_observation 34...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+update_observation 36...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+explore_subgraph
+update_observation 38...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+update_observation 40...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+update_observation 42...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+explore_subgraph
+update_observation 44...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+update_observation 46...
+=== Scene Graph ===
+Nodes:
+Edges:
+===============
+update_observation 48...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[374, 280]
+Edges:
+===============
+update_observation 50...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[374, 281]
+Edges:
+===============
+update_observation 52...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+Edges:
+===============
+update_observation 54...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+Edges:
+===============
+update_observation 56...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+Edges:
+===============
+update_observation 58...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+Edges:
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ user: which room is the most likely to have the [nodes: <object 1>, <object 2>, .... edges: .] in: [bedroom,]. only answer the room.
+assistant: the most likely room to have the [nodes: <object 1>, <object 2>, .... edges: .] in the given room is the one with the most edges.
+
+to find the most likely room, we need to consider the number of edges in the room. the most likely room has the most edges, as it has the most edges in the room.
+
+however, the question asks for the most likely room, which is not specified in the question. therefore, we cannot determine the most likely room based on the given information.
+
+if you have more information or a different question, please provide
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 60...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+Edges:
+===============
+update_observation 62...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+Edges:
+===============
+update_observation 64...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+Edges:
+===============
+update_observation 66...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+Edges:
+===============
+update_observation 68...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+Edges:
+===============
+update_observation 70...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+Edges:
+===============
+update_observation 72...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+Edges:
+===============
+update_observation 74...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+Edges:
+===============
+update_observation 76...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+Edges:
+===============
+update_observation 78...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+Edges:
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ user: which room is the most likely to have the [nodes: <object 1>, <object 2>, .... edges: .] in: [bedroom,]. only answer the room.
+assistant: the most likely room to have the [nodes: <object 1>, <object 2>, .... edges: .] in the given room is the one with the most edges.
+
+to find the most likely room, we need to consider the number of edges in the room. the most likely room has the most edges, as it has the most edges in the room.
+
+however, the question asks for the most likely room, which is not specified in the question. therefore, we cannot determine the most likely room based on the given information.
+
+if you have more information or a different question, please provide
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 80...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ User: 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+(curtain, table)
+Assistant: The spatial relationship between the objects is:
+
+(curtain, table)
+
+This is because the object (curtain) is on the right side of the object (table). The object (table) is on the left side of the object (curtain).
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+Edges:
+===============
+update_observation 82...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+Edges:
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ user: which room is the most likely to have the [nodes: <object 1>, <object 2>, .... edges: .] in: [bedroom,]. only answer the room.
+assistant: the most likely room to have the [nodes: <object 1>, <object 2>, .... edges: .] in the given room is the one with the most edges.
+
+to find the most likely room, we need to consider the number of edges in the room. the most likely room has the most edges, as it has the most edges in the room.
+
+however, the question asks for the most likely room, which is not specified in the question. therefore, we cannot determine the most likely room based on the given information.
+
+if you have more information or a different question, please provide
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 84...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+Edges:
+===============
+update_observation 86...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+Edges:
+===============
+update_observation 88...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+Edges:
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ user: which room is the most likely to have the [nodes: <object 1>, <object 2>, .... edges: .] in: [bedroom,]. only answer the room.
+assistant: the most likely room to have the [nodes: <object 1>, <object 2>, .... edges: .] in the given room is the one with the most edges.
+
+to find the most likely room, we need to consider the number of edges in the room. the most likely room has the most edges, as it has the most edges in the room.
+
+however, the question asks for the most likely room, which is not specified in the question. therefore, we cannot determine the most likely room based on the given information.
+
+if you have more information or a different question, please provide
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 90...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+Edges:
+===============
+update_observation 92...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+Edges:
+===============
+update_observation 94...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+Edges:
+===============
+update_observation 96...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+Edges:
+===============
+update_observation 98...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ User: 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+(cabinet, curtain)
+(cabinet, table)
+Assistant: The spatial relationship between the objects is:
+
+(cabinet, curtain)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 100...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 102...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ user: which room is the most likely to have the [nodes: <object 1>, <object 2>, .... edges: .] in: [bedroom,]. only answer the room.
+assistant: the most likely room to have the [nodes: <object 1>, <object 2>, .... edges: .] in the given room is the one with the most edges.
+
+to find the most likely room, we need to consider the number of edges in the room. the most likely room has the most edges, as it has the most edges in the room.
+
+however, the question asks for the most likely room, which is not specified in the question. therefore, we cannot determine the most likely room based on the given information.
+
+if you have more information or a different question, please provide
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 104...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 106...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 108...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 110...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 112...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 114...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ user: which room is the most likely to have the [nodes: <object 1>, <object 2>, .... edges: .] in: [bedroom,]. only answer the room.
+assistant: the most likely room to have the [nodes: <object 1>, <object 2>, .... edges: .] in the given room is the one with the most edges.
+
+to find the most likely room, we need to consider the number of edges in the room. the most likely room has the most edges, as it has the most edges in the room.
+
+however, the question asks for the most likely room, which is not specified in the question. therefore, we cannot determine the most likely room based on the given information.
+
+if you have more information or a different question, please provide
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+global goal popped
+update_observation 116...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 118...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 120...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 122...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 124...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 126...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 128...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ user: which room is the most likely to have the [nodes: <object 1>, <object 2>, .... edges: .] in: [bedroom,]. only answer the room.
+assistant: the most likely room to have the [nodes: <object 1>, <object 2>, .... edges: .] in the given room is the one with the most edges.
+
+to find the most likely room, we need to consider the number of edges in the room. the most likely room has the most edges, as it has the most edges in the room.
+
+however, the question asks for the most likely room, which is not specified in the question. therefore, we cannot determine the most likely room based on the given information.
+
+if you have more information or a different question, please provide
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 130...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 132...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 134...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 136...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 138...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 140...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 142...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 144...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 146...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 148...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 150...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 152...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 154...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 156...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 158...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 160...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 162...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ user: which room is the most likely to have the [nodes: <object 1>, <object 2>, .... edges: .] in: [bedroom,]. only answer the room.
+assistant: the most likely room to have the [nodes: <object 1>, <object 2>, .... edges: .] in the given room is the one with the most edges.
+
+to find the most likely room, we need to consider the number of edges in the room. the most likely room has the most edges, as it has the most edges in the room.
+
+however, the question asks for the most likely room, which is not specified in the question. therefore, we cannot determine the most likely room based on the given information.
+
+if you have more information or a different question, please provide
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 164...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+Edges:
+===============
+update_observation 166...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ User: 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+(windows, cabinet)
+(windows, curtain)
+(windows, table)
+Assistant: The spatial relationship between the objects is:
+
+(cabinet, chair)
+(cabinet, table)
+(cabinet, window)
+(cabinet, table)
+(cabinet, bed)
+(cabinet, nightstand)
+(cabinet, table)
+(cabinet, window)
+(cabinet, bed)
+(cabinet, nightstand)
+(cabinet, table)
+
+The spatial relationship between the objects is:
+
+(cabinet, chair)
+(cabinet, table)
+(
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+Edges:
+===============
+update_observation 168...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+Edges:
+===============
+update_observation 170...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+Edges:
+===============
+update_observation 172...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+Edges:
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ user: which room is the most likely to have the [nodes: <object 1>, <object 2>, .... edges: .] in: [bedroom,]. only answer the room.
+assistant: the most likely room to have the [nodes: <object 1>, <object 2>, .... edges: .] in the given room is the one with the most edges.
+
+to find the most likely room, we need to consider the number of edges in the room. the most likely room has the most edges, as it has the most edges in the room.
+
+however, the question asks for the most likely room, which is not specified in the question. therefore, we cannot determine the most likely room based on the given information.
+
+if you have more information or a different question, please provide
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 174...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+Edges:
+===============
+update_observation 176...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+Edges:
+===============
+update_observation 178...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+Edges:
+===============
+update_observation 180...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+Edges:
+===============
+update_observation 182...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+Edges:
+===============
+update_observation 184...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+Edges:
+===============
+update_observation 186...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+Edges:
+===============
+update_observation 188...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+Edges:
+===============
+update_observation 190...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+Edges:
+===============
+update_observation 192...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+Edges:
+===============
+update_observation 194...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+Edges:
+===============
+update_observation 196...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+Edges:
+===============
+update_observation 198...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+Edges:
+===============
+update_observation 200...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+Edges:
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ user: which room is the most likely to have the [nodes: <object 1>, <object 2>, .... edges: .] in: [bedroom,]. only answer the room.
+assistant: the most likely room to have the [nodes: <object 1>, <object 2>, .... edges: .] in the given room is the one with the most edges.
+
+to find the most likely room, we need to consider the number of edges in the room. the most likely room has the most edges, as it has the most edges in the room.
+
+however, the question asks for the most likely room, which is not specified in the question. therefore, we cannot determine the most likely room based on the given information.
+
+if you have more information or a different question, please provide
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 202...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+Edges:
+===============
+update_observation 204...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+Edges:
+===============
+update_observation 206...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+Edges:
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ user: which room is the most likely to have the [nodes: <object 1>, <object 2>, .... edges: .] in: [bedroom,]. only answer the room.
+assistant: the most likely room to have the [nodes: <object 1>, <object 2>, .... edges: .] in the given room is the one with the most edges.
+
+to find the most likely room, we need to consider the number of edges in the room. the most likely room has the most edges, as it has the most edges in the room.
+
+however, the question asks for the most likely room, which is not specified in the question. therefore, we cannot determine the most likely room based on the given information.
+
+if you have more information or a different question, please provide
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 208...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+Edges:
+===============
+update_observation 210...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ User: 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+(curtain, table)
+(curtain, curtain)
+(curtain, cabinet)
+(curtain, windows)
+Assistant: The spatial relationship between the objects is:
+
+(curtain, table)
+(curtain, curtain)
+(curtain, cabinet)
+(curtain, windows)
+
+The spatial relationship between the objects is:
+
+(curtain, table)
+(curtain, curtain)
+(curtain, cabinet)
+(curtain, windows)
+
+The spatial relationship between the objects is:
+
+(curtain, table)
+(curtain, curtain)
+(curtain, cabinet)
+(curtain, windows)
+
+The spatial relationship between the objects is:
+
+(
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+Edges:
+===============
+update_observation 212...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ User: 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+(table, curtain)
+(table, cabinet)
+(table, table)
+(table, curtain)
+(table, windows)
+Assistant: The spatial relationship between the objects is:
+
+(table, curtain)
+(table, cabinet)
+(table, table)
+(table, window)
+(table, curtain)
+(table, windows)
+
+The next to object is:
+
+(table, curtain)
+(table, cabinet)
+(table, table)
+(table, window)
+(table, curtain)
+(table, windows)
+
+The next to object is:
+
+(table, curtain)
+(table, cabinet)
+(table, table)
+(table, window)
+(table, curtain
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[349, 486]
+Edges:
+===============
+update_observation 214...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[349, 486]
+Edges:
+===============
+update_observation 216...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[349, 486]
+Edges:
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ user: which room is the most likely to have the [nodes: <object 1>, <object 2>, .... edges: .] in: [bedroom,]. only answer the room.
+assistant: the most likely room to have the [nodes: <object 1>, <object 2>, .... edges: .] in the given room is the one with the most edges.
+
+to find the most likely room, we need to consider the number of edges in the room. the most likely room has the most edges, as it has the most edges in the room.
+
+however, the question asks for the most likely room, which is not specified in the question. therefore, we cannot determine the most likely room based on the given information.
+
+if you have more information or a different question, please provide
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 218...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[349, 486]
+Edges:
+===============
+update_observation 220...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ User: 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+(bed, table)
+(bed, table)
+(bed, cabinet)
+(bed, windows)
+(bed, curtain)
+(bed, curtain)
+Assistant: The spatial relationship between the objects is:
+
+(cabinet, chair)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[349, 486]
+  - bed_0 | bed_0 | pos=[375, 490]
+Edges:
+===============
+update_observation 222...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[349, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+Edges:
+===============
+update_observation 224...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ User: 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+(table, bed)
+(table, table)
+(table, cabinet)
+(table, table)
+(table, curtain)
+(table, windows)
+(table, curtain)
+Assistant: The spatial relationship between the objects is:
+
+(table, bed)
+(table, table)
+(table, cabinet)
+(table, table)
+(table, curtain)
+(table, windows)
+(table, curtain)
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[349, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+Edges:
+===============
+update_observation 226...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[349, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+Edges:
+===============
+update_observation 228...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ User: 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+(cabinet, table)
+(cabinet, cabinet)
+(cabinet, curtain)
+(cabinet, bed)
+(cabinet, table)
+(cabinet, windows)
+(cabinet, table)
+(cabinet, curtain)
+Assistant: The spatial relationship between the objects is:
+
+(cabinet, table)
+(cabinet, cabinet)
+(cabinet, curtain)
+(cabinet, bed)
+(cabinet, table)
+(cabinet, windows)
+(cabinet, table)
+(cabinet, curtain)
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[349, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - cabinet_1 | cabinet_1 | pos=[361, 492]
+Edges:
+===============
+update_observation 230...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ User: 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+(table, bed)
+(table, windows)
+(table, table)
+(table, curtain)
+(table, curtain)
+(table, table)
+(table, table)
+(table, cabinet)
+Assistant: The spatial relationship between the objects is:
+
+(cabinet, chair)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[349, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+Edges:
+===============
+update_observation 232...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[349, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+Edges:
+===============
+update_observation 234...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[349, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+Edges:
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ user: which room is the most likely to have the [nodes: <object 1>, <object 2>, .... edges: .] in: [bedroom,]. only answer the room.
+assistant: the most likely room to have the [nodes: <object 1>, <object 2>, .... edges: .] in the given room is the one with the most edges.
+
+to find the most likely room, we need to consider the number of edges in the room. the most likely room has the most edges, as it has the most edges in the room.
+
+however, the question asks for the most likely room, which is not specified in the question. therefore, we cannot determine the most likely room based on the given information.
+
+if you have more information or a different question, please provide
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 236...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ User: 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+(table, windows)
+(table, bed)
+(table, curtain)
+(table, table)
+(table, table)
+(table, cabinet)
+(table, curtain)
+(table, table)
+(table, table)
+Assistant: The spatial relationship between the objects is:
+
+(table, window)
+(table, bed)
+(table, curtain)
+(table, table)
+(table, table)
+(table, table)
+(table, cabinet)
+(table, curtain)
+(table, table)
+(table, table)
+(table, table)
+(table, table)
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[349, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - table_4 | table_4 | pos=[337, 493]
+Edges:
+===============
+update_observation 238...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ User: 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+(curtain, bed)
+(curtain, curtain)
+(curtain, table)
+(curtain, curtain)
+(curtain, table)
+(curtain, windows)
+(curtain, cabinet)
+(curtain, table)
+(curtain, table)
+Assistant: The spatial relationship between the objects is:
+
+(curtain, bed)
+(curtain, curtain)
+(curtain, table)
+(curtain, curtain)
+(curtain, table)
+(curtain, window)
+(curtain, cabinet)
+(curtain, table)
+(curtain, window)
+(curtain, bed)
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[349, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+Edges:
+===============
+update_observation 240...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[349, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+Edges:
+===============
+update_observation 242...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[349, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+Edges:
+===============
+update_observation 244...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[349, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+Edges:
+===============
+update_observation 246...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+Edges:
+===============
+update_observation 248...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+Edges:
+===============
+update_observation 250...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+Edges:
+===============
+update_observation 252...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+Edges:
+===============
+update_observation 254...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+Edges:
+===============
+update_observation 256...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+Edges:
+===============
+update_observation 258...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+Edges:
+===============
+update_observation 260...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+Edges:
+===============
+update_observation 262...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+Edges:
+===============
+update_observation 264...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ User: 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+(table, curtain)
+(table, table)
+(table, cabinet)
+(table, table)
+(table, table)
+(table, curtain)
+(table, windows)
+(table, bed)
+(table, table)
+(table, curtain)
+Assistant: The spatial relationship between the objects is:
+
+(cabinet, chair)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+Edges:
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ user: which room is the most likely to have the [nodes: <object 1>, <object 2>, .... edges: .] in: [bedroom,]. only answer the room.
+assistant: the most likely room to have the [nodes: <object 1>, <object 2>, .... edges: .] in the given room is the one with the most edges.
+
+to find the most likely room, we need to consider the number of edges in the room. the most likely room has the most edges, as it has the most edges in the room.
+
+however, the question asks for the most likely room, which is not specified in the question. therefore, we cannot determine the most likely room based on the given information.
+
+if you have more information or a different question, please provide
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 266...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+Edges:
+===============
+update_observation 268...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+Edges:
+===============
+update_observation 270...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+Edges:
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ user: which room is the most likely to have the [nodes: <object 1>, <object 2>, .... edges: .] in: [bedroom,]. only answer the room.
+assistant: the most likely room to have the [nodes: <object 1>, <object 2>, .... edges: .] in the given room is the one with the most edges.
+
+to find the most likely room, we need to consider the number of edges in the room. the most likely room has the most edges, as it has the most edges in the room.
+
+however, the question asks for the most likely room, which is not specified in the question. therefore, we cannot determine the most likely room based on the given information.
+
+if you have more information or a different question, please provide
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 272...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+Edges:
+===============
+update_observation 274...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+Edges:
+===============
+update_observation 276...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+Edges:
+===============
+update_observation 278...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+Edges:
+===============
+update_observation 280...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+Edges:
+===============
+update_observation 282...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+Edges:
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ user: which room is the most likely to have the [nodes: <object 1>, <object 2>, .... edges: .] in: [bedroom,]. only answer the room.
+assistant: the most likely room to have the [nodes: <object 1>, <object 2>, .... edges: .] in the given room is the one with the most edges.
+
+to find the most likely room, we need to consider the number of edges in the room. the most likely room has the most edges, as it has the most edges in the room.
+
+however, the question asks for the most likely room, which is not specified in the question. therefore, we cannot determine the most likely room based on the given information.
+
+if you have more information or a different question, please provide
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 284...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+Edges:
+===============
+update_observation 286...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+Edges:
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ user: which room is the most likely to have the [nodes: <object 1>, <object 2>, .... edges: .] in: [bedroom,]. only answer the room.
+assistant: the most likely room to have the [nodes: <object 1>, <object 2>, .... edges: .] in the given room is the one with the most edges.
+
+to find the most likely room, we need to consider the number of edges in the room. the most likely room has the most edges, as it has the most edges in the room.
+
+however, the question asks for the most likely room, which is not specified in the question. therefore, we cannot determine the most likely room based on the given information.
+
+if you have more information or a different question, please provide
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 288...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+Edges:
+===============
+update_observation 290...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+Edges:
+===============
+update_observation 292...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+Edges:
+===============
+update_observation 294...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+Edges:
+===============
+update_observation 296...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+Edges:
+===============
+update_observation 298...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ User: 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+(living room, bed)
+(living room, table)
+(living room, table)
+(living room, curtain)
+(living room, curtain)
+(living room, table)
+(living room, windows)
+(living room, curtain)
+(living room, table)
+(living room, cabinet)
+(living room, table)
+Assistant: The spatial relationship between the objects is:
+
+(cabinet, chair)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+Edges:
+===============
+update_observation 300...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+Edges:
+===============
+update_observation 302...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+Edges:
+===============
+update_observation 304...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+Edges:
+===============
+update_observation 306...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+Edges:
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ user: which room is the most likely to have the [nodes: <object 1>, <object 2>, .... edges: .] in: [bedroom,]. only answer the room.
+assistant: the most likely room to have the [nodes: <object 1>, <object 2>, .... edges: .] in the given room is the one with the most edges.
+
+to find the most likely room, we need to consider the number of edges in the room. the most likely room has the most edges, as it has the most edges in the room.
+
+however, the question asks for the most likely room, which is not specified in the question. therefore, we cannot determine the most likely room based on the given information.
+
+if you have more information or a different question, please provide
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 308...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+Edges:
+===============
+update_observation 310...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+Edges:
+===============
+update_observation 312...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+Edges:
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ user: which room is the most likely to have the [nodes: <object 1>, <object 2>, .... edges: .] in: [bedroom,]. only answer the room.
+assistant: the most likely room to have the [nodes: <object 1>, <object 2>, .... edges: .] in the given room is the one with the most edges.
+
+to find the most likely room, we need to consider the number of edges in the room. the most likely room has the most edges, as it has the most edges in the room.
+
+however, the question asks for the most likely room, which is not specified in the question. therefore, we cannot determine the most likely room based on the given information.
+
+if you have more information or a different question, please provide
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 314...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+Edges:
+===============
+update_observation 316...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ User: 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+(table, curtain)
+(table, living room)
+(table, curtain)
+(table, curtain)
+(table, table)
+(table, cabinet)
+(table, table)
+(table, table)
+(table, table)
+(table, bed)
+(table, table)
+(table, windows)
+Assistant: The spatial relationship between the objects is:
+
+(cabinet, chair)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+Edges:
+===============
+update_observation 318...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+Edges:
+===============
+update_observation 320...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+Edges:
+===============
+update_observation 322...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+Edges:
+===============
+update_observation 324...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+Edges:
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ user: which room is the most likely to have the [nodes: <object 1>, <object 2>, .... edges: .] in: [bedroom,]. only answer the room.
+assistant: the most likely room to have the [nodes: <object 1>, <object 2>, .... edges: .] in the given room is the one with the most edges.
+
+to find the most likely room, we need to consider the number of edges in the room. the most likely room has the most edges, as it has the most edges in the room.
+
+however, the question asks for the most likely room, which is not specified in the question. therefore, we cannot determine the most likely room based on the given information.
+
+if you have more information or a different question, please provide
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 326...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+Edges:
+===============
+update_observation 328...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+Edges:
+===============
+update_observation 330...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+Edges:
+===============
+update_observation 332...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+Edges:
+===============
+update_observation 334...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+Edges:
+===============
+update_observation 336...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+Edges:
+===============
+update_observation 338...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+Edges:
+===============
+update_observation 340...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+Edges:
+===============
+update_observation 342...
+        LLM get all relation proposals...
+--------prompt_edge_proposal: 
+ 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+----LLM response: 
+ User: 
+Provide the most possible single spatial relationship for each of the following object pairs. Answer with only one relationship per pair, and separate each answer with a newline character.
+Examples:
+Input:
+Object pair(s):
+(cabinet, chair)
+Output:
+next to
+Input:
+Object pair(s):
+(table, lamp)
+(bed, nightstand)
+Output:
+on
+next to
+Object pair(s):
+        
+(painting picture, cabinet)
+(painting picture, curtain)
+(painting picture, bed)
+(painting picture, table)
+(painting picture, table)
+(painting picture, curtain)
+(painting picture, living room)
+(painting picture, table)
+(painting picture, table)
+(painting picture, curtain)
+(painting picture, table)
+(painting picture, windows)
+(painting picture, table)
+Assistant: The most possible single spatial relationship for each of the following object pairs is:
+
+(cabinet, chair)
+(cabinet, table)
+(cabinet, bed)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+(cabinet, table)
+-------------------------------------------------------------------------------------------
+
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+  - painting picture_0 | painting picture_0 | pos=[514, 389]
+Edges:
+===============
+update_observation 344...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+  - painting picture_0 | painting picture_0 | pos=[514, 389]
+Edges:
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ user: which room is the most likely to have the [nodes: <object 1>, <object 2>, .... edges: .] in: [bedroom,]. only answer the room.
+assistant: the most likely room to have the [nodes: <object 1>, <object 2>, .... edges: .] in the given room is the one with the most edges.
+
+to find the most likely room, we need to consider the number of edges in the room. the most likely room has the most edges, as it has the most edges in the room.
+
+however, the question asks for the most likely room, which is not specified in the question. therefore, we cannot determine the most likely room based on the given information.
+
+if you have more information or a different question, please provide
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 346...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+  - painting picture_0 | painting picture_0 | pos=[514, 389]
+Edges:
+===============
+update_observation 348...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+  - painting picture_0 | painting picture_0 | pos=[514, 389]
+Edges:
+===============
+update_observation 350...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+  - painting picture_0 | painting picture_0 | pos=[514, 389]
+Edges:
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ user: which room is the most likely to have the [nodes: <object 1>, <object 2>, .... edges: .] in: [bedroom,]. only answer the room.
+assistant: the most likely room to have the [nodes: <object 1>, <object 2>, .... edges: .] in the given room is the one with the most edges.
+
+to find the most likely room, we need to consider the number of edges in the room. the most likely room has the most edges, as it has the most edges in the room.
+
+however, the question asks for the most likely room, which is not specified in the question. therefore, we cannot determine the most likely room based on the given information.
+
+if you have more information or a different question, please provide
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 352...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+  - painting picture_0 | painting picture_0 | pos=[514, 389]
+Edges:
+===============
+update_observation 354...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+  - painting picture_0 | painting picture_0 | pos=[514, 389]
+Edges:
+===============
+update_observation 356...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+  - painting picture_0 | painting picture_0 | pos=[514, 389]
+Edges:
+===============
+update_observation 358...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+  - painting picture_0 | painting picture_0 | pos=[514, 389]
+Edges:
+===============
+--------prompt_room_predict:
+ Which room is the most likely to have the [{}] in: [{}]. Only answer the room.
+----LLM response: 
+ user: which room is the most likely to have the [nodes: <object 1>, <object 2>, .... edges: .] in: [bedroom,]. only answer the room.
+assistant: the most likely room to have the [nodes: <object 1>, <object 2>, .... edges: .] in the given room is the one with the most edges.
+
+to find the most likely room, we need to consider the number of edges in the room. the most likely room has the most edges, as it has the most edges in the room.
+
+however, the question asks for the most likely room, which is not specified in the question. therefore, we cannot determine the most likely room based on the given information.
+
+if you have more information or a different question, please provide
+-------------------------------------------------------------------------------------------
+
+explore_subgraph
+update_observation 360...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+  - painting picture_0 | painting picture_0 | pos=[514, 389]
+Edges:
+===============
+update_observation 362...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+  - painting picture_0 | painting picture_0 | pos=[514, 389]
+Edges:
+===============
+update_observation 364...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+  - painting picture_0 | painting picture_0 | pos=[514, 389]
+Edges:
+===============
+update_observation 366...
+=== Scene Graph ===
+Nodes:
+  - table_0 | table_0 | pos=[373, 281]
+  - curtain_0 | curtain_0 | pos=[379, 264]
+  - cabinet_0 | cabinet_0 | pos=[327, 213]
+  - windows_0 | windows_0 | pos=[279, 346]
+  - curtain_1 | curtain_1 | pos=[348, 483]
+  - table_1 | table_1 | pos=[351, 486]
+  - bed_0 | bed_0 | pos=[374, 491]
+  - table_2 | table_2 | pos=[369, 492]
+  - table_3 | table_3 | pos=[360, 492]
+  - curtain_2 | curtain_2 | pos=[337, 493]
+  - table_4 | table_4 | pos=[433, 491]
+  - living room_0 | living room_0 | pos=[512, 483]
+  - table_5 | table_5 | pos=[518, 394]
+  - painting picture_0 | painting picture_0 | pos=[514, 389]
+Edges:
+===============
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+-------------find target, waiting, break by ctrl+C-------------------

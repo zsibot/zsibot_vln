@@ -1,0 +1,159 @@
+
+debug_mode: False
+############################################################################
+##### Start the simulation by running python main.py
+
+goal_type: "text"
+text_goal: "green plant"
+
+############## or
+
+
+#goal_type: "ins_image"
+#image_goal_path: "./goals/tv_set.jpg" or
+#image_goal_path: "./goals/bed.jpg"
+
+##### Start the simulation
+############################################################################
+
+
+
+
+
+
+############################################################################
+######camera parameters
+
+camera_x: 17 #camera extrinsics
+camera_y: 0
+camera_z: 1
+camera_theta: 0 #pitch angle
+
+hfov: 45.747 # camera intrinsics, note hfov is recomputed to match the baseline model setting
+
+min_depth: 0.0
+max_depth: 10.
+
+
+broadcast: False # for broadcasting what the robot sees
+
+######camera parameters
+############################################################################
+
+
+
+
+
+
+############################################################################
+##### Unigoal parameters
+
+env_frame_width: 480
+env_frame_height: 640
+
+distance_threshold: 1.6
+min_frontier_size: 16 #18
+body_center_height: 0.0
+frame_width: 120
+frame_height: 160
+vision_range: 100
+du_scale: 1
+num_sem_categories: 16
+map_size_cm: 3600
+map_resolution: 5
+turn_angle: 25
+sem_pred_prob_thr: 0.50
+global_downscaling: 3
+cat_pred_threshold: 5.0
+map_pred_threshold: 1.0
+exp_pred_threshold: 1.0
+collision_threshold: 0.20
+cuda: true
+num_processes: 1
+dump_location: "./outputs/experiments/"
+experiment_id: "experiment_0"
+seed: 1
+
+##### Unigoal parameters
+############################################################################
+
+
+
+
+
+
+############################################################################
+##### LLm/VLM
+
+#cloud_api: False
+#api_key: "huggingface"
+#base_url: "http://localhost:8000/v1"
+#llm_model: "HuggingFaceTB/SmolVLM2-256M-Video-Instruct"
+#vlm_model: "HuggingFaceTB/SmolVLM2-256M-Video-Instruct"
+
+##llm_model: "HuggingFaceTB/SmolVLM2-2.2B-Instruct"
+##vlm_model: "HuggingFaceTB/SmolVLM2-2.2B-Instruct"
+######################################################## or
+
+cloud_api: False
+api_key: "ollama"
+#base_url: "http://192.168.30.234:11434/v1/" # ollama server
+base_url: "http://localhost:11434/v1/" # local ollama server
+
+llm_model: "gemma3:4b" #llm_model: "gemma3"
+vlm_model: "gemma3:4b" #vlm_model: "gemma3"
+
+##llm_model: "gemma3:27b"
+##vlm_model: "gemma3:27b"
+
+##llm_model: "llama4"
+##vlm_model: "llama4"
+
+##llm_model: "llama3.2-vision"
+##vlm_model: "llama3.2-vision"
+
+##llm_model: "llama3.2-vision:90b"
+##vlm_model: "llama3.2-vision:90b"
+
+##llm_model: "qwen2.5vl"
+##vlm_model: "qwen2.5vl"
+######################################################### or
+
+#cloud_api: True
+#api_key: "" # for safty reason, this comes from environment variable processed in main.py
+            ## just do this on shell: export DASHSCOPE_API_KEY='YOUR_DASHSCOPE_API_KEY'
+#base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+#llm_model: "qwen3-vl-flash" #qwen3-vl-plus
+#vlm_model: "qwen3-vl-flash" #qwen3-vl-plus
+
+##### LLm/VLM
+############################################################################
+
+
+
+
+
+
+
+############################################################################
+##### visualization
+
+output_dir: "./outputs"
+show_rgb: True
+show_depth: False
+show_point_cloud: True
+show_dilated: True
+show_frontiers: True
+show_map: True
+show_explore: True
+
+viz:
+  enable: True
+  live: True
+  save: True
+  refresh_hz: 20
+  output_dir: "./outputs/"
+  agent_panel: true
+
+###### visualization
+###########################################################################
