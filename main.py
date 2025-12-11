@@ -20,7 +20,7 @@ from   utils.disk_viz                   import DiskViz
 def get_config():
     # priority order: setting in this func > command line > yaml file
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config-file",          default="configs/config_matrix.yaml", metavar="FILE", help="path to config file"    , type=str)
+    parser.add_argument("--config-file",          default="agents/zeroshot/unigoal/configs/config_matrix.yaml", metavar="FILE", help="path to config file"    , type=str)
     parser.add_argument("--goal_type",            default="",                                           help="ins_image or text"      , type=str)
     parser.add_argument("--image_goal_path",      default="",                                           help="path for iamge input"   , type=str)
     parser.add_argument("--text_goal", default="",                                                      help=""                       , type=str)

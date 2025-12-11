@@ -1,5 +1,5 @@
 third_party/
-agents/zeroshot/unigoal
+agents/zeroshot/unigoal/third_party
 bridge/build/
 bridge/install/
 bridge/log/
