@@ -42,7 +42,7 @@ zsibot_vln/
 ### Clone Repository and Install zmq3
 
 ```bash
-git clone https://github.com/zsibot/zsibot_llm.git
+git clone git@github.com:zsibot/zsibot_vln.git
 sudo apt install libzmq3-dev
 ```
 
