@@ -68,7 +68,7 @@ pip install -U transformers datasets evaluate accelerate timm
 pip install num2words fastapi uvicorn hf_xet
 pip install --no-cache-dir --no-build-isolation --verbose flash-attn
 # download weights:
-python zsibot_llm/llms/smolvlm2_256m_video_instruct/smolvlm2_256m_video_instruct.py
+python zsibot_vln/llms/smolvlm2_256m_video_instruct/smolvlm2_256m_video_instruct.py
 ```
 
 Option 2: Cloud LLM/VLM API (fetch API-key from e.g. [Aliyun Bailian](https://bailian.console.aliyun.com/))
